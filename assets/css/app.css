@@ -45,8 +45,8 @@ body,
   font-weight: bold;
 }
 
-.primary-button:hover,
-.primary-button:focus{
+.primary-button:hover
+/*.primary-button:focus*/{
   background: var(--secondary-color);
 }
 
@@ -58,8 +58,8 @@ body,
   font-weight: bold;
 }
 
-.secondary-button:hover,
-.secondary-button:focus{
+.secondary-button:hover
+/*.secondary-button:focus*/{
   background: var(--tertiary-color);
 }
 

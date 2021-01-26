@@ -9,7 +9,35 @@
 
     <transition name="side-menu">
       <div v-if="$store.state.sideMenu" class="side-menu">
+        <div class="side-menu-head-sec">
+          <nuxt-link to="/" tag="h2">CARGOGLOBAL</nuxt-link>
+          <i class="fas fa-times" @click="$store.commit('toggleSideMenu')"></i>
+        </div>
+        <div class="side-menu-items">
 
+          <nuxt-link to="#" tag="div" class="item">
+              <i class="fas fa-stream"></i>
+              Tüm İlanlar
+          </nuxt-link>
+          <nuxt-link v-if="$store.state.isLogin" to="##" tag="div" class="item">
+            <i class="fas fa-user-alt"></i>
+            Benim İlanlarım
+          </nuxt-link>
+          <nuxt-link to="###" tag="div" class="item">
+            <i class="fas fa-heart"></i>
+            Favori ilanlar
+        </nuxt-link>
+          <nuxt-link to="####" tag="div" class="item">
+            <i class="fab fa-readme"></i>
+            Hakkında
+          </nuxt-link>
+
+            <div v-if="!$store.state.isLogin" class="side-menu-buttons">
+              <nuxt-link tag="button" to="/login" style="margin-right: 15px;border-radius: 3px;cursor: pointer;width: 100px;height: 40px;display: flex;justify-content: center;align-items: center" class="secondary-button">Giriş yap</nuxt-link>
+              <nuxt-link tag="button" to="/register" style="border-radius: 3px;cursor: pointer;width: 100px;height: 40px;display: flex;justify-content: center;align-items: center" class="primary-button">Kayıt ol</nuxt-link>
+            </div>
+
+        </div>
       </div>
     </transition>
 
@@ -18,15 +46,15 @@
 
         <i @click="$store.commit('toggleSideMenu')" class="menu-bars media fas fa-bars"></i>
 
-        <nuxt-link to="/" tag="h2" style="cursor: pointer">CARGOGLOBAL</nuxt-link>
+        <nuxt-link to="/" tag="h2">CARGOGLOBAL</nuxt-link>
 
         <div class="links">
-          <nuxt-link tag="a"  to="/">Tüm İlanlar</nuxt-link>
-          <nuxt-link tag="a"  to="#" v-if="$store.state.isLogin">Benim İlanlarım</nuxt-link>
-          <nuxt-link tag="a" to="##">Favori ilanlar</nuxt-link>
-          <nuxt-link tag="a" to="###">Hakkında</nuxt-link>
+          <nuxt-link tag="a"  to="#">Tüm İlanlar</nuxt-link>
+          <nuxt-link tag="a"  to="##" v-if="$store.state.isLogin">Benim İlanlarım</nuxt-link>
+          <nuxt-link tag="a" to="###">Favori ilanlar</nuxt-link>
+          <nuxt-link tag="a" to="####">Hakkında</nuxt-link>
 
-          <nuxt-link v-if="$store.state.isLogin" style="border-radius: 3px" to="####" tag="button" class="secondary-button">İlan ekle</nuxt-link>
+          <nuxt-link v-if="$store.state.isLogin" style="border-radius: 3px" to="####" tag="button" class="secondary-button add-post">İlan ekle</nuxt-link>
 
           <nuxt-link v-if="!$store.state.isLogin" style="border-radius: 3px" to="/login" tag="button" class="secondary-button">Giriş yap</nuxt-link>
           <nuxt-link v-if="!$store.state.isLogin" style="border-radius: 3px" to="/register" tag="button" class="primary-button">Kayıt ol</nuxt-link>
@@ -201,10 +229,12 @@ export default {
   transition: 200ms all;
 }
 
-.navbar-root h2{
+.navbar-root h2,
+.side-menu-head-sec h2{
   background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  cursor: pointer;
 }
 
 .links {
@@ -253,12 +283,13 @@ a.nuxt-link-exact-active{
 
 .side-menu{
   background: white;
-  width: 70vw;
+  width: 305px;
   height: 100vh;
   z-index: 4;
   position: fixed;
   top: 0px;
   left: 0px;
+  padding: 40px 20px 20px 15px;
 }
 
 .side-menu-place{
@@ -269,6 +300,65 @@ a.nuxt-link-exact-active{
   top: 0px;
   left: 0px;
   background: rgba(0,0,0,.5);
+}
+
+.side-menu .side-menu-head-sec{
+  display: flex;
+  justify-content: space-between;
+}
+
+.side-menu .side-menu-head-sec i{
+  font-size: 23px;
+  transition: 200ms all;
+  cursor: pointer;
+}
+
+.side-menu .side-menu-head-sec i:hover{
+  color: var(--primary-color);
+}
+
+.side-menu .side-menu-items{
+  margin: 30px 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-menu .side-menu-items .item{
+  margin: 10px 0px;
+  width: 220px;
+  height: 50px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 300ms all;
+}
+
+.side-menu .side-menu-items .item i{
+  margin: 0px 10px;
+}
+
+
+.side-menu .side-menu-items .item:hover{
+  background: var(--tertiary-color);
+  color: var(--primary-color);
+}
+
+.side-menu .side-menu-items .item i{
+  margin: 0px 10px;
+}
+
+.side-menu .side-menu-items div.nuxt-link-exact-active{
+  background: var(--tertiary-color);
+  color: var(--primary-color);
+}
+
+.side-menu-buttons{
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 10px;
 }
 
 
@@ -379,6 +469,14 @@ a.nuxt-link-exact-active{
     right: 0px;
   }
 }
+
+@media only screen and (max-width: 1208px){
+  .add-post{
+    margin: 0px 20px;
+  }
+}
+
+
 
 
 
