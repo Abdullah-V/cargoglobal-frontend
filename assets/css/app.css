@@ -1,0 +1,81 @@
+:root{
+  --primary-color: #fc1515;
+  --secondary-color: #d90000;
+  --tertiary-color: rgba(246, 49, 49, 0.1)
+}
+
+html,
+body,
+#__nuxt,
+#__layout
+{
+  font-family:
+    'Source Sans Pro',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  width: 100%;
+  height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+.primary-button {
+  background: var(--primary-color);
+  color: white;
+  transition: 300ms background-color;
+  border: 0px;
+  font-weight: bold;
+}
+
+.primary-button:hover,
+.primary-button:focus{
+  background: var(--secondary-color);
+}
+
+.secondary-button {
+  background: transparent;
+  border: 1px solid var(--primary-color);
+  transition: 300ms background-color;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.secondary-button:hover,
+.secondary-button:focus{
+  background: var(--tertiary-color);
+}
+
+a{
+  color: var(--primary-color);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover,
+a:focus{
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+
+
+button {
+  cursor: pointer;
+}
