@@ -15,7 +15,7 @@
         </div>
         <div class="side-menu-items">
 
-          <nuxt-link to="#" tag="div" class="item">
+          <nuxt-link to="/" tag="div" class="item">
               <i class="fas fa-stream"></i>
               Tüm İlanlar
           </nuxt-link>
@@ -32,7 +32,10 @@
             Hakkında
           </nuxt-link>
 
-            <div v-if="!$store.state.isLogin" class="side-menu-buttons">
+          <nuxt-link v-if="$store.state.isLogin" style="margin-top: 10px;border-radius: 3px;width: 170px;height: 50px" to="####" tag="button" class="secondary-button">İlan ekle</nuxt-link>
+
+
+          <div v-if="!$store.state.isLogin" class="side-menu-buttons">
               <nuxt-link tag="button" to="/login" style="margin-right: 15px;border-radius: 3px;cursor: pointer;width: 100px;height: 40px;display: flex;justify-content: center;align-items: center" class="secondary-button">Giriş yap</nuxt-link>
               <nuxt-link tag="button" to="/register" style="border-radius: 3px;cursor: pointer;width: 100px;height: 40px;display: flex;justify-content: center;align-items: center" class="primary-button">Kayıt ol</nuxt-link>
             </div>
@@ -49,7 +52,7 @@
         <nuxt-link to="/" tag="h2">CARGOGLOBAL</nuxt-link>
 
         <div class="links">
-          <nuxt-link tag="a"  to="#">Tüm İlanlar</nuxt-link>
+          <nuxt-link tag="a"  to="/">Tüm İlanlar</nuxt-link>
           <nuxt-link tag="a"  to="##" v-if="$store.state.isLogin">Benim İlanlarım</nuxt-link>
           <nuxt-link tag="a" to="###">Favori ilanlar</nuxt-link>
           <nuxt-link tag="a" to="####">Hakkında</nuxt-link>
@@ -165,7 +168,7 @@ export default {
   right: 10px;
   width: 315px;
   height: 60px;
-  background: white;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -209,17 +212,17 @@ export default {
   height: 60px;
   background: white;
   position: fixed;
-  top: 0px;
-  left: 0px;
+  left: 0;
+  top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 30px;
   z-index: 2;
 
-  -webkit-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.75);
-  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.45);
+  -moz-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.45);
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.45);
 }
 
 .links a{
@@ -269,7 +272,7 @@ a.nuxt-link-exact-active{
 
 .menu-bars{
   font-size: 28px;
-  transition: 300ms all;
+  transition: 350ms all;
   color: black;
   cursor: pointer;
 }
@@ -397,11 +400,11 @@ a.nuxt-link-exact-active{
 
 
 .side-menu-leave-active{
-  animation: side-out 400ms ease-in-out forwards;
+  animation: side-out 500ms ease-in-out forwards;
 }
 
 .side-menu-enter-active{
-  animation: side-in 400ms ease-in-out forwards;
+  animation: side-in 500ms ease-in-out forwards;
 }
 
 

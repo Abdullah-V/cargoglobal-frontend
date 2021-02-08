@@ -79,3 +79,11 @@ a:focus{
 button {
   cursor: pointer;
 }
+
+
+hr{
+  width: 40%;
+  height: 2px;
+  background: var(--primary-color);
+  border: 0;
+}

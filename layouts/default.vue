@@ -2,7 +2,7 @@
 
   <transition-group name="fade" appear>
     <Navbar key="na" />
-    <Nuxt key="nu" />
+    <Nuxt key="nu" style="margin-top: 60px"/>
   </transition-group>
 
 </template>

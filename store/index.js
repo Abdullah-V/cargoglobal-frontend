@@ -1,6 +1,7 @@
 export const state = () => ({
-  isLogin: false,
-  sideMenu: false
+  isLogin: true,
+  sideMenu: false,
+  posts: []
 })
 
 export const getters = {}

@@ -9,12 +9,14 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      // {href: "https://pro.fontawesome.com/releases/v5.2.0/css/all.css"},
-      // {href: "https://static.fontawesome.com/css/fontawesome-app.css"}
       ],
     script:[
       {src: 'https://kit.fontawesome.com/4d8d9d6354.js'}
     ]
+  },
+
+  router: {
+    middleware: 'app'
   },
 
   loading: {
@@ -30,14 +32,17 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    {
+      src: "~/plugins/vue-flagpack.js",
+      mode: "client",
+    }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-  ],
+  buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -58,6 +63,5 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
+  build: {}
 }
