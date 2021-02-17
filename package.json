@@ -11,9 +11,14 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.12.5",
     "@nuxtjs/pwa": "^3.3.4",
+    "aos": "^2.3.4",
     "core-js": "^3.8.2",
     "nuxt": "^2.14.12",
-    "vue-flagpack": "^1.0.1"
+    "v-calendar": "^2.2.3",
+    "vue-aos": "^1.1.0",
+    "vue-flagpack": "^1.0.1",
+    "vue-lottie": "^0.2.1",
+    "vue-phone-number-input": "^1.1.10"
   },
   "devDependencies": {}
 }

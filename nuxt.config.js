@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'cargoglobal-frontend',
+    title: 'CARGOGLOBAL',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -9,9 +9,12 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      // {rel: "stylesheet", href: "https://unpkg.com/aos@next/dist/aos.css"}
       ],
     script:[
-      {src: 'https://kit.fontawesome.com/4d8d9d6354.js'}
+      {src: 'https://kit.fontawesome.com/4d8d9d6354.js'},
+      // {src: "https://unpkg.com/aos@next/dist/aos.js"}
+      // {src: "https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"}
     ]
   },
 
@@ -34,7 +37,19 @@ export default {
   plugins: [
     {
       src: "~/plugins/vue-flagpack.js",
-      mode: "client",
+      ssr: false
+    },
+    {
+      src: "~/plugins/aos",
+      ssr: false
+    },
+    {
+      src: '~plugins/v-calendar.js',
+      ssr: false
+    },
+    {
+      src: '~/plugins/vue-phone-number-input.js',
+      ssr: false
     }
   ],
 
@@ -63,5 +78,22 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
+  build: {},
+
+  // extend (config, ctx) {
+  //   config.resolve.symlinks = false
+  // },
+  //
+  // errorCaptured(err, vm, info) {
+  //   console.log("sa1")
+  // },
+  //
+  // renderError(createElement, err) {
+  //   console.log("sa2")
+  // }
+
+
 }
+
+
+// global.HTMLElement = typeof window === 'undefined' ? Object : window.HTMLElement

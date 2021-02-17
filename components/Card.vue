@@ -1,5 +1,9 @@
 <template>
-  <div class="card-root">
+  <div
+    class="card-root"
+    data-aos="zoom-in"
+    data-aos-duration="600"
+  >
 
       <hr>
 
@@ -8,9 +12,9 @@
     <Flag
       class="flag"
       code="AZ"
-      size="L"
       style="margin-bottom: 5px"
     />
+
 
       <h2>Azerbaycan</h2> <div style="margin: 5px 0px"></div> <h2>Bakü</h2>
 
@@ -30,7 +34,6 @@
     <Flag
       class="flag"
       code="TR"
-      size="L"
       style="margin-bottom: 5px"
     />
 
@@ -49,7 +52,8 @@
 
 
     <div class="actions">
-      <button class="like"> <i class="far fa-heart"></i>  86 </button>
+      <button @click="toggleLike()" v-if="!isLiked" class="like"> <i class="far fa-heart"></i>  86 </button>
+      <button @click="toggleLike()" v-if="isLiked" class="like" style="color: var(--primary-color)"> <i class="fas fa-heart"></i>  86 </button>
       <button class="more primary-button">Daha fazla</button>
     </div>
 
@@ -59,7 +63,17 @@
 
 <script>
 export default {
-  name: "Card"
+  name: "Card",
+  data(){
+    return {
+      isLiked: false
+    }
+  },
+  methods: {
+    toggleLike(){
+      this.isLiked = !this.isLiked
+    }
+  }
 }
 </script>
 
@@ -123,6 +137,7 @@ export default {
 
 .actions .like:hover{
   background: var(--tertiary-color);
+  color: var(--primary-color);
 }
 
 .actions .more{

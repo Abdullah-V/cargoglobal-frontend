@@ -32,7 +32,7 @@
             Hakkında
           </nuxt-link>
 
-          <nuxt-link v-if="$store.state.isLogin" style="margin-top: 10px;border-radius: 3px;width: 170px;height: 50px" to="####" tag="button" class="secondary-button">İlan ekle</nuxt-link>
+          <nuxt-link v-if="$store.state.isLogin" style="margin-top: 10px;border-radius: 3px;width: 170px;height: 50px" to="/new" tag="button" class="secondary-button">İlan ekle</nuxt-link>
 
 
           <div v-if="!$store.state.isLogin" class="side-menu-buttons">
@@ -57,16 +57,16 @@
           <nuxt-link tag="a" to="###">Favori ilanlar</nuxt-link>
           <nuxt-link tag="a" to="####">Hakkında</nuxt-link>
 
-          <nuxt-link v-if="$store.state.isLogin" style="border-radius: 3px" to="####" tag="button" class="secondary-button add-post">İlan ekle</nuxt-link>
+          <nuxt-link v-if="$store.state.isLogin" style="border-radius: 3px" to="/new" tag="button" class="secondary-button add-post">İlan ekle</nuxt-link>
 
           <nuxt-link v-if="!$store.state.isLogin" style="border-radius: 3px" to="/login" tag="button" class="secondary-button">Giriş yap</nuxt-link>
           <nuxt-link v-if="!$store.state.isLogin" style="border-radius: 3px" to="/register" tag="button" class="primary-button">Kayıt ol</nuxt-link>
 
-          <label for="asd" @click="toggleSearch()" style="border-radius: 3px;cursor: pointer;width: 50px;height: 40px;display: flex;justify-content: center;align-items: center" class="primary-button fas fa-search"></label>
+          <label title='Ara (kısayol: "/")' for="asd" @click="toggleSearch()" style="border-radius: 3px;cursor: pointer;width: 50px;height: 40px;display: flex;justify-content: center;align-items: center" class="primary-button fas fa-search"></label>
 
         </div>
 
-        <label for="asd" @click="toggleSearch()" style="border-radius: 3px;cursor: pointer;width: 50px;height: 40px;display: flex;justify-content: center;align-items: center" class="media primary-button fas fa-search"></label>
+        <label title='Ara (kısayol: "/")' for="asd" @click="toggleSearch()" style="border-radius: 3px;cursor: pointer;width: 50px;height: 40px;display: flex;justify-content: center;align-items: center" class="media primary-button fas fa-search"></label>
 
       </div>
 
@@ -75,7 +75,7 @@
       <div v-if="searchBox" class="search-section">
         <div class="search-box">
           <label for="asd" class="search-icon"><i class="fas fa-search"></i></label>
-          <input id="asd" type="text" class="search-input" placeholder="Search on cargoglobal">
+          <input id="asd" type="text" class="search-input" placeholder='Şehir,ülke veya tarih ara'>
         </div>
       </div>
 
@@ -109,7 +109,16 @@ export default {
         if(e.key === "/"){
           e.preventDefault()
           await this.toggleSearch()
-          document.querySelector(".search-input").focus()
+          try{
+            document.querySelector(".search-input").focus()
+          }catch (e) {}
+        }
+        else if(e.key === "\\"){
+          window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth"
+          })
         }
       })
     }
@@ -478,9 +487,5 @@ a.nuxt-link-exact-active{
     margin: 0px 20px;
   }
 }
-
-
-
-
 
 </style>

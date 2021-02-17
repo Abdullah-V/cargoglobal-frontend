@@ -1,7 +1,7 @@
 :root{
   --primary-color: #fc1515;
   --secondary-color: #d90000;
-  --tertiary-color: rgba(246, 49, 49, 0.1)
+  --tertiary-color: rgba(153, 37, 37, 0.1)
 }
 
 html,
@@ -26,6 +26,7 @@ body,
   -webkit-font-smoothing: antialiased;
   width: 100%;
   height: 100%;
+  background: #f8f8f8;
 }
 
 *,
@@ -35,6 +36,11 @@ body,
   margin: 0;
   padding: 0;
   outline: none;
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: #ff7272;
 }
 
 .primary-button {
@@ -61,6 +67,11 @@ body,
 .secondary-button:hover
 /*.secondary-button:focus*/{
   background: var(--tertiary-color);
+}
+
+.flag{
+  width: 30px;
+  height: 20px;
 }
 
 a{
