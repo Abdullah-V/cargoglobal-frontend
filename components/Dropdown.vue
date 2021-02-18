@@ -1,12 +1,12 @@
 <template>
   <div class="selectdiv">
     <label>
-      <select @change="selectchange()" v-model="$store.state[connect]" v-if="t === 'country'">
-        <option :value="item.name" v-for="item in $store.state.countries">
+      <select @change="selectchange($event)" v-model="$store.state[connect]" v-if="t === 'country'">
+        <option :value="item.country" v-for="item in $store.state.countries">
 
-          {{ item.name }}
+          {{ item.country }}
 
-<!--          <img class="flag" :src="item.flag" alt="">-->
+<!-- <img class="flag" :src="item.flag" alt=""> -->
 
         </option>
 
@@ -36,17 +36,39 @@ export default {
   props: ["t","connect","startOrEnd"],
  async created() {
     var startOrEnd = this.startOrEnd
-    await this.$store.dispatch('getAllCountries')
-    await this.$store.dispatch("getCitiesOfCountry",{
-      startOrEnd
-    })
+
+    // await this.$store.dispatch("getCitiesOfCountry",{
+    //   startOrEnd
+    // })
  },
   methods: {
-    selectchange(){
+    selectchange(e){
       var startOrEnd = this.startOrEnd
-      this.$store.dispatch("getCitiesOfCountry",{
-        startOrEnd
+      // console.log(e.target.value)
+      var r = this.$store.state.countries.filter(el => el.country === e.target.value)
+      // console.log(r[0].cities)
+
+      this.$store.dispatch('getFlagURLofCountry')
+      .then(result => {
+        console.log(result)
       })
+
+
+      if(startOrEnd === "start"){
+        this.$store.state.startCities = r[0].cities
+        this.$store.state.currentStartCity = r[0].cities[0]
+      }
+
+      else if(startOrEnd === "end"){
+        this.$store.state.endCities = r[0].cities
+        this.$store.state.currentEndCity = r[0].cities[0]
+      }
+
+      // this.$store.state.startCities = cities
+
+      // this.$store.dispatch("getCitiesOfCountry",{
+      //   startOrEnd
+      // })
     }
   }
 }

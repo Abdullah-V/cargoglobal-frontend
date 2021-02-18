@@ -69,11 +69,6 @@ body,
   background: var(--tertiary-color);
 }
 
-.flag{
-  width: 30px;
-  height: 20px;
-}
-
 a{
   color: var(--primary-color);
   text-decoration: none;
@@ -86,11 +81,9 @@ a:focus{
   text-decoration: underline;
 }
 
-
 button {
   cursor: pointer;
 }
-
 
 hr{
   width: 40%;

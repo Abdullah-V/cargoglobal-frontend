@@ -55,15 +55,29 @@
 
 
 
-<!--        {{ $store.state.endDate }}-->
 
-<!--        {{ $store.state.currentEndCountry }}-->
+<!--       {{ $store.state.startDate }}-->
 
-<!--        {{ $store.state.currentEndCity }}-->
+<!--       {{ $store.state.endDate }}-->
+
+
+
+
+<!--       {{ $store.state.currentStartCountry }}-->
+
+<!--       {{ $store.state.currentStartCity }}-->
+
+
+<!--       {{ $store.state.currentEndCountry }}-->
+
+<!--       {{ $store.state.currentEndCity }}-->
+
 
 
       </div>
     </div>
+
+
 
 
 
@@ -136,7 +150,7 @@ export default {
 
 .new-root {
   max-width: 100vw;
-  min-height: 100vh;
+  min-height: 100%;
   height: auto;
   padding-bottom: 50px;
 }

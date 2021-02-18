@@ -13,6 +13,7 @@ export const state = () => ({
   endDate: new Date(),
   phoneNumber: "",
   additionalInformation: "",
+  dataForFilterFLag: [],
 
 
   // Only for development
@@ -33,34 +34,17 @@ export const mutations = {
 
 export const actions = {
   async getAllCountries(context){
-    await this.$axios.$get('https://countriesnow.space/api/v0.1/countries/flag/images')
+    await this.$axios.$get('https://countriesnow.space/api/v0.1/countries/')
       .then(result => {
         context.state.countries = result.data
+        context.state.startCities = result.data[12].cities
+        context.state.endCities = result.data[181].cities
       })
   },
-  async getCitiesOfCountry(context,{ startOrEnd }){
-
-    if(startOrEnd === "start"){
-      await this.$axios.$post('https://countriesnow.space/api/v0.1/countries/cities',{
-        country: context.state.currentStartCountry
-      })
-        .then(result => {
-          context.state.startCities = result.data
-          context.state.currentStartCity = result.data[0]
-        })
-    }
-
-    else if(startOrEnd === "end"){
-      await this.$axios.$post('https://countriesnow.space/api/v0.1/countries/cities',{
-        country: context.state.currentEndCountry
-      })
-        .then(result => {
-          context.state.endCities = result.data
-          context.state.currentEndCity = result.data[0]
-        })
-    }
-
+  getFlagURLofCountry(context) {
+    return context.state.dataForFilterFLag.filter(el => el.name.toLowerCase().startsWith(context.state.currentStartCountry.toLowerCase()))[0].flag
   },
+
 
 
   // trial(context){

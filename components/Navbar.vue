@@ -305,8 +305,8 @@ a.nuxt-link-exact-active{
 }
 
 .side-menu-place{
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: 3;
   position: fixed;
   top: 0px;
