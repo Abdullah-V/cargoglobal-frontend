@@ -54,7 +54,7 @@
     <div class="actions">
       <button @click="toggleLike()" v-if="!isLiked" class="like"> <i class="far fa-heart"></i>  86 </button>
       <button @click="toggleLike()" v-if="isLiked" class="like" style="color: var(--primary-color)"> <i class="fas fa-heart"></i>  86 </button>
-      <button class="more primary-button">Daha fazla</button>
+      <nuxt-link to="/posts/1" tag="button" class="more primary-button">Daha fazla</nuxt-link>
     </div>
 
 

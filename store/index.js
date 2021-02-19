@@ -21,15 +21,16 @@ export const state = () => ({
   isLogin: true,
 })
 
-export const getters = {}
+export const getters = {
+  // TODO: add 'getFlagURLofCountry' actions here.
+}
 
 export const mutations = {
   toggleSideMenu(state){
     state.sideMenu = !state.sideMenu
   },
-  setCountries(state){
-
-  }
+  setCountries(state){}
+  // TODO: define all mutations
 }
 
 export const actions = {

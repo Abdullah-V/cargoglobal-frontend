@@ -2,26 +2,18 @@
   <div class="index-root">
 
 
-    <div v-if="$store.state.posts" style="height: 100px;display: flex;align-items: center;justify-content: center;flex-direction: column">
+    <div v-if="$store.state.posts" style="height: 130px;display: flex;align-items: center;justify-content: center;flex-direction: column">
       <h1 style="font-size: 40px">Tüm ilanlar</h1>
       <hr style="width: 150px;margin-top: 20px">
+      <h3 style="margin-top: 15px;color: #4a4a4a">Toplam 24 ilan</h3>
     </div>
 
 
-    <span v-for="item in $store.state.countries">
+<!--    <span v-for="item in $store.state.countries">-->
+<!--      -->
 
+<!--    </span>-->
 
-
-<!--<img class="flag" :src="item.flag" alt="">-->
-
-<!--    <Flag-->
-<!--      class="flag"-->
-<!--      :code="item.alpha2Code"-->
-<!--      size="L"-->
-<!--      style="margin-bottom: 5px"-->
-<!--    />-->
-
-    </span>
 
 
     <div class="cards" v-if="$store.state.posts">
@@ -50,7 +42,7 @@
 
     <div v-if="!$store.state.posts" class="lottie-container">
       <h1 style="color: #4a4a4a;text-align: center;margin-top: 20px;font-size: 40px">İlan yok.<br><nuxt-link style="font-size: 30px" to="/new" tag="a">Eklemeye ne dersin?</nuxt-link> </h1>
-      <lottie :width="'50%'" :height="500" :options="lottieOptions" v-on:animCreated="handleAnimation" />
+      <lottie width="50%" :height="500" :options="lottieOptions" v-on:animCreated="handleAnimation" />
     </div>
 
   </div>
@@ -60,6 +52,7 @@
 import Card from "~/components/Card";
 import lottie from 'vue-lottie/src/lottie.vue'
 import * as animationData from "~/static/illustrations/moon-animation.json";
+import * as animationData404 from "~/static/illustrations/404.json";
 
 export default {
   name: "index",
@@ -72,6 +65,9 @@ export default {
       anim: null,
       lottieOptions: {
         animationData: animationData.default,
+      },
+      lottieOptions404: {
+        animationData: animationData404.default
       }
     }
   },
