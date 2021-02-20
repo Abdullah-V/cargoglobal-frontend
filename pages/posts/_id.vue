@@ -8,6 +8,36 @@
     </div>
 
 
+    <div class="action-buttons">
+      <button
+        @click="$router.go(-1)"
+        class="primary-button"
+        style="width: 13%;height: 45px;border-radius: 2px;font-size: 18px;"
+      >
+        <i class="fas fa-arrow-left"></i>
+      </button>
+
+      <button
+        class="secondary-button"
+        style="width: 13%;height: 45px;border-radius: 2px;font-size: 18px;"
+      >
+        <i class="fas fa-trash"></i>
+      </button>
+
+      <button @click="toggleLike()" v-if="!isLiked" class="like"> <i class="far fa-heart"></i>  86 </button>
+      <button @click="toggleLike()" v-if="isLiked" class="like" style="color: var(--primary-color)"> <i class="fas fa-heart"></i>  86 </button>
+
+      <button
+        class="primary-button"
+        style="width: 26%;height: 45px;border-radius: 3px;font-size: 16px;"
+      >
+        <i style="margin: 0 8px 0 0" class="fas fa-phone-alt"></i>
+        Ara
+      </button>
+
+    </div>
+
+
     <div class="wrapper">
 
       <div class="first-details-container">
@@ -63,8 +93,7 @@
 
         <div class="additional-infos">
           <h2 style="color: #515151;font-weight: lighter">Ek bilgiler: </h2>
-          <pre style="text-align: center;font-size: 22px;margin: 30px 0px 0px 20px">Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim rutrum et, cubilia turpis vitae aenean nisl nascetur auctor parturient tellus morbi pellentesque.
-          </pre>
+          <pre style="text-align: center;font-size: 22px;margin: 30px 0px 0px 20px">Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim rutrum et, cubilia turpis vitae aenean nisl nascetur auctor parturient tellus morbi pellentesque.</pre>
         </div>
 
         <div class="additional-infos2">
@@ -90,12 +119,64 @@
 
     </div>
 
+
+    <div style="margin-top: 20px;height: 130px;display: flex;align-items: center;justify-content: center;flex-direction: column">
+      <h1 v-if="$store.state.haveSimilar" style="font-size: 40px">Benzer ilanlar</h1>
+      <h1 v-else style="font-size: 40px">Benzer ilan bulunmuyor</h1>
+      <hr v-if="$store.state.haveSimilar" style="width: 170px;margin-top: 20px">
+      <hr v-else style="width: 250px;margin-top: 20px">
+    </div>
+
+    <lottie v-if="!$store.state.haveSimilar" width="50%" :height="400" :options="lottieOptions" v-on:animCreated="handleAnimation" />
+
+
+    <div v-if="$store.state.haveSimilar" class="cards">
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+    </div>
+
+
   </div>
 </template>
 
 <script>
+import Card from "~/components/Card";
+import lottie from 'vue-lottie/src/lottie.vue'
+import * as animationData from "~/static/illustrations/blobs.json";
 
-export default {}
+export default {
+  components: {
+    Card,
+    lottie
+  },
+  data() {
+    return {
+      isLiked: false,
+      anim: null,
+      lottieOptions: {
+        animationData: animationData.default,
+      },
+    }
+  },
+  methods: {
+    toggleLike(){
+      this.isLiked = !this.isLiked
+    },
+    handleAnimation(anim) {
+      this.anim = anim;
+      // this.anim.setSpeed(1.5)
+    }
+  },
+  head() {
+    return {
+      title: "İlan detayları | CARGOGLOBAL"
+    }
+  }
+}
 
 </script>
 
@@ -116,13 +197,45 @@ export default {}
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  padding: 10px;
   /*align-items: center;*/
   /*justify-content: center;*/
 
   -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.25);
   -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.25);
   box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.25);
-  padding: 10px;
+}
+
+.action-buttons {
+  width: 400px;
+  height: 65px;
+  background: white;
+  margin: 20px auto 40px auto;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+}
+
+.action-buttons .like{
+  font-size: 18px;
+  width: 19%;
+  height: 50px;
+  border: 0;
+  background: transparent;
+  transition: 300ms all;
+  border-radius: 3px;
+  /*color: #393939;*/
+  background: var(--tertiary-color);
+  color: var(--primary-color);
+}
+
+.action-buttons .like:hover{
+  background: #f6d5d4;
 }
 
 .first-details-container {
@@ -200,6 +313,13 @@ pre {
   width: 80%
 }
 
+.cards{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
 @media only screen and (max-width: 960px) {
   .first-details-container {
     flex-direction: column;
@@ -250,6 +370,12 @@ pre {
   }
   .additional-infos2 {
     margin-top: 130px;
+  }
+}
+
+@media only screen and (max-width: 455px) {
+  .action-buttons {
+    width: 90%;
   }
 }
 

@@ -4,7 +4,8 @@
 
     <transition-group style="width: 100%;height: 100%;display: block" name="fade" appear>
       <Navbar key="na" />
-      <Nuxt key="nu" style="margin-top: 60px"/>
+      <Nuxt key="nu" style="margin-top: 60px" />
+      <Footer key="foo" />
       <button key="but" title='Yukarı git (kısayol: "\")' @click="amk()" class="primary-button scroll-top-btn"><i class="fas fa-arrow-up"></i></button>
     </transition-group>
 
@@ -14,10 +15,12 @@
 
 <script>
 import Navbar from "~/components/Navbar";
+import Footer from "~/components/Footer";
 
 export default {
   components:{
-    Navbar
+    Navbar,
+    Footer
   },
   methods: {
     amk(){

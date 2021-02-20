@@ -1,11 +1,4 @@
-export default function (context) {
-  context.store.state.sideMenu = false
-  if(process.client){
-    window.scrollTo({
-      top: 0,
-      left: 0,
-    })
-  }
+window.onNuxtReady(() => {
   console.clear()
   console.log(`
   email:"abdullahveliyev2005@gmail.com",
@@ -41,8 +34,4 @@ export default function (context) {
 
   `)
 
-
-
-
-
-}
+})

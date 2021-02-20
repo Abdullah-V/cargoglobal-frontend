@@ -51,7 +51,7 @@
     </div>
 
 
-    <div class="actions">
+    <div class="card-actions">
       <button @click="toggleLike()" v-if="!isLiked" class="like"> <i class="far fa-heart"></i>  86 </button>
       <button @click="toggleLike()" v-if="isLiked" class="like" style="color: var(--primary-color)"> <i class="fas fa-heart"></i>  86 </button>
       <nuxt-link to="/posts/1" tag="button" class="more primary-button">Daha fazla</nuxt-link>
@@ -117,14 +117,14 @@ export default {
   color: #343434;
 }
 
-.actions{
+.card-actions{
   margin-top: 20px;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
 }
 
-.actions .like{
+.card-actions .like{
   font-size: 18px;
   width: 75px;
   height: 50px;
@@ -135,12 +135,12 @@ export default {
   color: #393939;
 }
 
-.actions .like:hover{
+.card-actions .like:hover{
   background: var(--tertiary-color);
   color: var(--primary-color);
 }
 
-.actions .more{
+.card-actions .more{
   width: 100px;
   border-radius: 3px;
 }

@@ -35,6 +35,7 @@ export default {
   width: 100%;
   height: 100%;
   align-items: center;
+  background: white;
 }
 
 .login-illstr{

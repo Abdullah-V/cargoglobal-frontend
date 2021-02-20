@@ -27,10 +27,7 @@
             <i class="fas fa-heart"></i>
             Favori ilanlar
         </nuxt-link>
-          <nuxt-link to="####" tag="div" class="item">
-            <i class="fab fa-readme"></i>
-            Hakkında
-          </nuxt-link>
+
 
           <nuxt-link v-if="$store.state.isLogin" style="margin-top: 10px;border-radius: 3px;width: 170px;height: 50px" to="/new" tag="button" class="secondary-button">İlan ekle</nuxt-link>
 
@@ -55,7 +52,6 @@
           <nuxt-link tag="a"  to="/">Tüm İlanlar</nuxt-link>
           <nuxt-link tag="a"  to="##" v-if="$store.state.isLogin">Benim İlanlarım</nuxt-link>
           <nuxt-link tag="a" to="###">Favori ilanlar</nuxt-link>
-          <nuxt-link tag="a" to="####">Hakkında</nuxt-link>
 
           <nuxt-link v-if="$store.state.isLogin" style="border-radius: 3px" to="/new" tag="button" class="secondary-button add-post">İlan ekle</nuxt-link>
 

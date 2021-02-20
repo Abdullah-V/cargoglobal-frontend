@@ -1,7 +1,7 @@
 :root{
   --primary-color: #fc1515;
   --secondary-color: #d90000;
-  --tertiary-color: rgba(153, 37, 37, 0.1)
+  --tertiary-color: rgba(160, 7, 7, 0.1)
 }
 
 html,
@@ -69,14 +69,16 @@ body,
   background: var(--tertiary-color);
 }
 
-a{
+a,
+.link{
   color: var(--primary-color);
+  font-weight: bolder;
   text-decoration: none;
   cursor: pointer;
 }
 
 a:hover,
-a:focus{
+.link:hover{
   color: var(--secondary-color);
   text-decoration: underline;
 }

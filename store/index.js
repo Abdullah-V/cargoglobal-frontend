@@ -12,12 +12,15 @@ export const state = () => ({
   startDate: new Date(),
   endDate: new Date(),
   phoneNumber: "",
+  fullPhoneNumber: "",
+  isValidPhoneNumber: false,
   additionalInformation: "",
   dataForFilterFLag: [],
 
 
   // Only for development
   posts: true,
+  haveSimilar: false,
   isLogin: true,
 })
 
@@ -29,7 +32,12 @@ export const mutations = {
   toggleSideMenu(state){
     state.sideMenu = !state.sideMenu
   },
-  setCountries(state){}
+  setCountries(state){},
+  setFullPhoneNumber(state,payload){
+    state.fullPhoneNumber = payload.number
+    state.isValidPhoneNumber = payload.isValidNumber
+  },
+
   // TODO: define all mutations
 }
 

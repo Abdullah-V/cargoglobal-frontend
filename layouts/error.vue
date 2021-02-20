@@ -3,15 +3,23 @@
 
     <div style="margin-top: 20px" v-if="error.statusCode == 404">
       <lottie width="50%" :height="450" :options="lottieOptions404" v-on:animCreated="handleAnimation" />
-      <h1 style="text-align: center;margin-top: 20px">Sayfa bulunamadı <br><br> <nuxt-link to="/"><button style="width: 115px;height: 45px;border-radius: 3px;" class="secondary-button">Eve dön</button></nuxt-link> </h1>
+      <h1 style="text-align: center;margin-top: 20px">Sayfa bulunamadı <br><br> <a href="/"> <button style="width: 115px;height: 45px;border-radius: 3px;" class="secondary-button">Eve dön</button></a> </h1>
 
     </div>
 
     <div v-else>
-      <lottie width="50%" :height="450" :options="lottieOptions500" v-on:animCreated="handleAnimation" />
-      <h1 style="text-align: center;margin-top: 20px">Bilinmedik bir sorunla karşı karşıyayız.Lütfen bizimle <a href="https://t.me/Abdullah_V_2005">iletişime geçin</a> <br><br> <nuxt-link to="/"><button style="width: 115px;height: 45px;border-radius: 3px;" class="secondary-button">Eve dön</button></nuxt-link> </h1>
+      <lottie width="50%" :height="400" :options="lottieOptions500" v-on:animCreated="handleAnimation" />
+      <h1 style="text-align: center;margin-top: 20px">Bilinmedik bir sorunla karşı karşıyayız.Lütfen bizimle <a href="https://t.me/Abdullah_V_2005">iletişime geçin</a> <br><br> <a href="/"> <button style="width: 115px;height: 45px;border-radius: 3px;" class="secondary-button">Eve dön</button></a> </h1>
 
     </div>
+
+
+
+<!--    <div>-->
+<!--      <lottie width="50%" :height="400" :options="lottieOptions500" v-on:animCreated="handleAnimation" />-->
+<!--      <h1 style="text-align: center;margin-top: 20px">Bilinmedik bir sorunla karşı karşıyayız.Lütfen bizimle <a href="https://t.me/Abdullah_V_2005">iletişime geçin</a> <br><br> <a href="/"> <button style="width: 115px;height: 45px;border-radius: 3px;" class="secondary-button">Eve dön</button></a> </h1>-->
+
+<!--    </div>-->
 
 
 
@@ -35,6 +43,11 @@ export default {
     }
   },
   layout: "error-layout",
+  head() {
+    return {
+      title: this.error.statusCode == 404 ? "Sayfa bulunamadı | CARGOGLOBAL" : "Sunucu hatası | CARGOGLOBAL"
+    }
+  },
   data(){
     return {
       anim: null,

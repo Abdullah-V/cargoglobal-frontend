@@ -98,6 +98,10 @@
             valid-color="green"
           />
 
+<!--      {{ $store.state.phoneNumber }}-->
+<!--      {{ $store.state.fullPhoneNumber }}-->
+<!--      {{ $store.state.isValidPhoneNumber }}-->
+
     </div>
 
 
@@ -140,7 +144,11 @@ export default {
   },
   methods: {
     onUpdate (event) {
-      // console.log(event.formattedNumber)
+      // console.log(event)
+      this.$store.commit('setFullPhoneNumber',{
+        number: event.formattedNumber,
+        isValidNumber: event.isValid,
+      })
     }
   }
 }

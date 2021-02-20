@@ -50,6 +50,14 @@ export default {
     {
       src: '~/plugins/vue-phone-number-input.js',
       ssr: false
+    },
+    {
+      src: "~/plugins/globalErrorHandler.js",
+      ssr: false
+    },
+    {
+      src: '~/plugins/hello.js',
+      ssr: false
     }
   ],
 

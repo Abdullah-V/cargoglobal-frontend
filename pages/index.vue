@@ -18,30 +18,31 @@
 
     <div class="cards" v-if="$store.state.posts">
 
-      <Card></Card>
-      <Card></Card>
-      <Card></Card>
-      <Card></Card>
-      <Card></Card>
-      <Card></Card>
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
 
-      <Card></Card>
-      <Card></Card>
-      <Card></Card>
-      <Card></Card>
-      <Card></Card>
-      <Card></Card>
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
 
-      <Card></Card>
-      <Card></Card>
-      <Card></Card>
-      <Card></Card>
-      <Card></Card>
-      <Card></Card>
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+
     </div>
 
     <div v-if="!$store.state.posts" class="lottie-container">
-      <h1 style="color: #4a4a4a;text-align: center;margin-top: 20px;font-size: 40px">İlan yok.<br><nuxt-link style="font-size: 30px" to="/new" tag="a">Eklemeye ne dersin?</nuxt-link> </h1>
+      <h1 style="color: #4a4a4a;text-align: center;margin-top: 5px;font-size: 40px">İlan yok.<br><nuxt-link style="font-size: 30px" to="/new" tag="a">Eklemeye ne dersin?</nuxt-link> </h1>
       <lottie width="50%" :height="500" :options="lottieOptions" v-on:animCreated="handleAnimation" />
     </div>
 
