@@ -37,6 +37,7 @@ body,
   padding: 0;
   outline: none;
   scroll-behavior: smooth;
+  text-decoration: none;
 }
 
 ::selection {
@@ -69,7 +70,6 @@ body,
   background: var(--tertiary-color);
 }
 
-a,
 .link{
   color: var(--primary-color);
   font-weight: bolder;
@@ -77,10 +77,14 @@ a,
   cursor: pointer;
 }
 
-a:hover,
 .link:hover{
   color: var(--secondary-color);
   text-decoration: underline;
+}
+
+a {
+  color: black;
+  cursor: pointer;
 }
 
 button {

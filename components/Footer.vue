@@ -14,10 +14,13 @@
         Cargoglobal lojistik ilanlarının paylaşılması için sitedir.
         Kargo firmaları veya kargo taşıyan bireysel kişiler
         kargoyu taşıyacakları şehri,zamanı ve telefon numaralarını yazarak
-        ücretsiz,kayıt gerekmeden ve hiç bir sınır olmadan <nuxt-link to="/new">ilan paylaşa bilirler</nuxt-link>.
+        ücretsiz,kayıt gerekmeden ve hiç bir sınır olmadan <nuxt-link class="link" to="/new">ilan paylaşa bilirler</nuxt-link>.
         Kullanıcılar kendilerine uygun firmayı veya kişiyi bularak onlarla rahatlıkla
-        iletişime geçe bilir. Cargoglobal açık kaynaklı bir projedir
-        ve <a class="link" href="#">kodlarına github üzerinden erişilip katkı sağlana bilir</a>.
+        iletişime geçe bilir. İlanlar,varış tarihlerinden bir gün sonra otomatik olarak silinecektir.
+        Cargoglobal açık kaynaklı bir projedir ve
+        <a target="_blank" class="link" href="https://github.com/Abdullah-V/cargoglobal-frontend">
+          kodlarına github üzerinden erişilip katkı sağlana bilir
+        </a>.
         Cargoglobal <a class="link" href="#">MIT lisansıyla</a> korunmaktadır.
         Görüş ve önerileriniz için iletişime geçe bilirsiniz.
       </p>
@@ -30,25 +33,32 @@
 
     <div class="footer-section2">
       <h1 style="font-size: 35px">Sosyal</h1>
-
       <div class="social-menu">
-        <div class="menu-item">
-          <i class="fab fa-github"></i> Github
-        </div>
 
-        <div class="menu-item">
-          <i class="fab fa-telegram"></i> Telegram
-        </div>
+      <a target="_blank" href="https://github.com/Abdullah-V">
+          <div class="menu-item">
+            <i class="fab fa-github"></i> Github
+          </div>
+      </a>
 
-        <div class="menu-item">
-          <i class="fab fa-twitter-square"></i> Twitter
-        </div>
+        <a target="_blank" href="https://t.me/Abdullah_V_2005">
+          <div class="menu-item">
+            <i class="fab fa-telegram"></i> Telegram
+          </div>
+        </a>
 
+        <a target="_blank" href="https://twitter.com/Abdullah_V_2005">
+          <div class="menu-item">
+            <i class="fab fa-twitter-square"></i> Twitter
+          </div>
+        </a>
 
+        <a target="_blank" href="mailto:abdullahveliyev2005@gmail.com">
+          <div class="menu-item">
+            <i class="fas fa-envelope"></i> Email
+          </div>
+        </a>
 
-        <div class="menu-item">
-          <i class="fas fa-envelope"></i> Email
-        </div>
       </div>
 
     </div>
@@ -57,31 +67,31 @@
 
 
 
-    <div class="footer-section2">
-      <h1 style="font-size: 35px">Menu</h1>
+<!--    <div class="footer-section2">-->
+<!--      <h1 style="font-size: 35px">Menu</h1>-->
 
-      <div class="social-menu">
-        <div class="menu-item">
-          <i class="fas fa-stream"></i> Tüm İlanlar
-        </div>
+<!--      <div class="social-menu">-->
+<!--        <div class="menu-item">-->
+<!--          <i class="fas fa-stream"></i> Tüm İlanlar-->
+<!--        </div>-->
 
-        <div class="menu-item">
-          <i class="fas fa-user-alt"></i>
-          Benim İlanlarım
-        </div>
+<!--        <div class="menu-item">-->
+<!--          <i class="fas fa-user-alt"></i>-->
+<!--          Benim İlanlarım-->
+<!--        </div>-->
 
-        <div class="menu-item">
-          <i class="fas fa-heart"></i>
-          Favori ilanlar
-        </div>
+<!--        <div class="menu-item">-->
+<!--          <i class="fas fa-heart"></i>-->
+<!--          Favori ilanlar-->
+<!--        </div>-->
 
-        <div class="menu-item">
-          <i class="fas fa-plus"></i>
-          İlan ekle
-        </div>
-      </div>
+<!--        <div class="menu-item">-->
+<!--          <i class="fas fa-plus"></i>-->
+<!--          İlan ekle-->
+<!--        </div>-->
+<!--      </div>-->
 
-    </div>
+<!--    </div>-->
 
 
   </div>
@@ -97,7 +107,7 @@ export default {
 
 .footer-root {
   width: 100%;
-  height: 520px;
+  height: 480px;
   background: white;
   border-radius: 18px 18px 0 0;
   display: flex;
@@ -111,7 +121,7 @@ export default {
 }
 
 [class*="footer-section"] {
-  width: 33%;
+  width: 40%;
   height: 100%;
 }
 
@@ -156,6 +166,7 @@ export default {
   border-radius: 4px;
   background: #eeeeee;
   transition: 100ms all;
+  color: black;
 }
 
 .menu-item:hover {
@@ -174,7 +185,7 @@ export default {
 @media only screen and (max-width: 1215px) {
   .footer-root {
     flex-direction: column;
-    height: 1300px;
+    height: 800px;
     align-items: center;
   }
   [class*="footer-section"] {

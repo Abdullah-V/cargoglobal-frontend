@@ -16,6 +16,9 @@ export const state = () => ({
   isValidPhoneNumber: false,
   additionalInformation: "",
   dataForFilterFLag: [],
+  startFlag: "https://restcountries.eu/data/aze.svg",
+  endFlag: "https://restcountries.eu/data/tur.svg",
+  errors: [],
 
 
   // Only for development
@@ -50,9 +53,36 @@ export const actions = {
         context.state.endCities = result.data[181].cities
       })
   },
-  getFlagURLofCountry(context) {
-    return context.state.dataForFilterFLag.filter(el => el.name.toLowerCase().startsWith(context.state.currentStartCountry.toLowerCase()))[0].flag
+  getFlagURLofCountry(context,startOrEnd) {
+    if(startOrEnd === "start"){
+      return context.state.dataForFilterFLag.filter(el => el.name.toLowerCase().startsWith(context.state.currentStartCountry.toLowerCase()))[0].flag
+    }
+    else if(startOrEnd === "end"){
+      return context.state.dataForFilterFLag.filter(el => el.name.toLowerCase().startsWith(context.state.currentEndCountry.toLowerCase()))[0].flag
+    }
   },
+  validateFields(context) {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    })
+    var s = context.state
+    s.errors = []
+    if((s.startDate && s.endDate) && (s.startDate <= s.endDate) && (s.isValidPhoneNumber)){
+      console.log(true)
+    }else {
+      if(!s.startDate || !s.endDate){
+        s.errors.push("Tarih alanları zorunludur.")
+      }
+      else if(s.startDate > s.endDate){
+        s.errors.push("Çıkış tarihi varış tarihinden büyük olamaz.")
+      }
+      if(!s.isValidPhoneNumber){
+        s.errors.push("Telefon numarası geçersiz.")
+      }
+      console.log(false)
+    }
+  }
 
 
 

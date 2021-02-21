@@ -4,8 +4,15 @@
 
     <div style="height: 130px;display: flex;align-items: center;justify-content: center;flex-direction: column">
       <h1 style="font-size: 40px">Yeni ilan ekle</h1>
-      <hr style="width: 170px;margin-top: 20px">
+      <hr style="width: 170px;margin: 20px 0px">
     </div>
+
+    <div style="margin: 10px 0 30px 0;" v-if="$store.state.errors.length">
+      <h1 style="font-size: 35px;text-align: center">İlanınız eklenemedi: </h1>
+      <h2 style="color: #ff0000;text-align: center;margin: 20px 0" v-for="error in $store.state.errors"> {{ error }} </h2>
+    </div>
+
+<!--    {{ $store.state.errors }}-->
 
     <div class="start-and-end">
       <div class="start">
@@ -102,6 +109,10 @@
 <!--      {{ $store.state.fullPhoneNumber }}-->
 <!--      {{ $store.state.isValidPhoneNumber }}-->
 
+<!--      start: {{ $store.state.startFlag }}-->
+<!--      <br>-->
+<!--      end: {{ $store.state.endFlag }}-->
+
     </div>
 
 
@@ -119,12 +130,11 @@
 
 
     <div class="add-btn-div">
-      <button class="add primary-button">Ekle <i style="margin: 0px 3px" class="fas fa-plus"></i></button>
+      <button class="add primary-button" @click="$store.dispatch('validateFields')">Ekle <i style="margin: 0px 3px" class="fas fa-plus"></i></button>
     </div>
 
 
 
-<!--{{ $store.state.phoneNumber }}-->
 
   </div>
 </template>

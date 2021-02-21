@@ -16,7 +16,7 @@
 
         <button class="login-btn primary-button">Giriş yap</button>
 
-        <h3 style="margin-top: 20px">Hesabınız yokmu? <nuxt-link to="/register">Kayıt olun!</nuxt-link></h3>
+        <h3 style="margin-top: 20px">Hesabınız yokmu? <nuxt-link class="link" to="/register">Kayıt olun!</nuxt-link></h3>
       </div>
       </div>
   </div>
@@ -24,7 +24,11 @@
 
 <script>
 export default {
-
+  head() {
+    return {
+      title: "Giriş yap | CARGOGLOBAL"
+    }
+  }
 }
 </script>
 

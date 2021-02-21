@@ -48,20 +48,32 @@ export default {
       var r = this.$store.state.countries.filter(el => el.country === e.target.value)
       // console.log(r[0].cities)
 
-      this.$store.dispatch('getFlagURLofCountry')
-      .then(result => {
-        console.log(result)
-      })
+      // this.$store.dispatch('getFlagURLofCountry')
+      // .then(result => {
+      //   this.$store.commit('setFlags', {
+      //     startOrEnd,
+      //     result
+      //   })
+      //   // console.log(result)
+      // })
 
 
       if(startOrEnd === "start"){
         this.$store.state.startCities = r[0].cities
         this.$store.state.currentStartCity = r[0].cities[0]
+        this.$store.dispatch('getFlagURLofCountry',startOrEnd)
+        .then(result => {
+          this.$store.state.startFlag = result
+        })
       }
 
       else if(startOrEnd === "end"){
         this.$store.state.endCities = r[0].cities
         this.$store.state.currentEndCity = r[0].cities[0]
+        this.$store.dispatch('getFlagURLofCountry',startOrEnd)
+          .then(result => {
+            this.$store.state.endFlag = result
+          })
       }
 
       // this.$store.state.startCities = cities
