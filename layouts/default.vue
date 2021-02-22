@@ -35,20 +35,26 @@ export default {
   },
   created() {
 
-
     this.$axios.$get("https://restcountries.eu/rest/v2/all")
     .then(result => {
       this.$store.state.dataForFilterFLag = result
     })
 
     this.$store.dispatch('getAllCountries')
+    this.$store.dispatch('getAllPosts')
 
     if(process.client){
 
-      // window.onerror = function(message, source, lineno, colno, error) {
-      //   console.log("lanet olsun")
-      // };
+      if(!localStorage.getItem("posts")){
+        console.log("not posts")
+        localStorage.setItem('posts',JSON.stringify([]))
+      }
+      if(!localStorage.getItem("likes")){
+        console.log("not likes")
+        localStorage.setItem('likes',JSON.stringify([]))
+      }
 
+      console.log(localStorage)
 
       window.addEventListener("scroll",() => {
 

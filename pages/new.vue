@@ -130,7 +130,7 @@
 
 
     <div class="add-btn-div">
-      <button class="add primary-button" @click="$store.dispatch('validateFields')">Ekle <i style="margin: 0px 3px" class="fas fa-plus"></i></button>
+      <button class="add primary-button" @click="$store.dispatch('newPost')">Ekle <i style="margin: 0px 3px" class="fas fa-plus"></i></button>
     </div>
 
 

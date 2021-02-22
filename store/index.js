@@ -19,10 +19,10 @@ export const state = () => ({
   startFlag: "https://restcountries.eu/data/aze.svg",
   endFlag: "https://restcountries.eu/data/tur.svg",
   errors: [],
+  posts: true,
 
 
   // Only for development
-  posts: true,
   haveSimilar: false,
   isLogin: true,
 })
@@ -53,15 +53,23 @@ export const actions = {
         context.state.endCities = result.data[181].cities
       })
   },
-  getFlagURLofCountry(context,startOrEnd) {
-    if(startOrEnd === "start"){
-      return context.state.dataForFilterFLag.filter(el => el.name.toLowerCase().startsWith(context.state.currentStartCountry.toLowerCase()))[0].flag
-    }
-    else if(startOrEnd === "end"){
-      return context.state.dataForFilterFLag.filter(el => el.name.toLowerCase().startsWith(context.state.currentEndCountry.toLowerCase()))[0].flag
-    }
+  getAllPosts(context) {
+    this.$axios.$get(process.env.API_URL + "/all")
+      .then(result => {
+        context.state.posts = result
+      })
   },
-  validateFields(context) {
+  getFlagURLofCountry(context,startOrEnd) {
+    try{
+      if(startOrEnd === "start"){
+        return context.state.dataForFilterFLag.filter(el => el.name.toLowerCase().startsWith(context.state.currentStartCountry.toLowerCase()))[0].flag
+      }
+      else if(startOrEnd === "end"){
+        return context.state.dataForFilterFLag.filter(el => el.name.toLowerCase().startsWith(context.state.currentEndCountry.toLowerCase()))[0].flag
+      }
+    }catch (e){}
+  },
+  newPost(context) {
     window.scrollTo({
       top: 0,
       left: 0,
@@ -69,6 +77,26 @@ export const actions = {
     var s = context.state
     s.errors = []
     if((s.startDate && s.endDate) && (s.startDate <= s.endDate) && (s.isValidPhoneNumber)){
+      this.$axios.$post(process.env.API_URL + "/new",{
+        startCountry: s.currentStartCountry,
+        endCountry: s.currentEndCountry,
+        startCity: s.currentStartCity,
+        endCity: s.currentEndCity,
+        startFlag: s.startFlag,
+        endFlag: s.endFlag,
+        startDate: s.startDate,
+        endDate: s.endDate,
+        phoneNumber: s.fullPhoneNumber,
+        additionalInformation: s.additionalInformation,
+      })
+        .then(result => {
+          context.state.posts.push(result)
+          context.dispatch('addToLocalStorageArray',{
+            lsk: "posts",
+            itemToAdd: result._id,
+          })
+        })
+      context.dispatch('resetInputs')
       console.log(true)
     }else {
       if(!s.startDate || !s.endDate){
@@ -82,12 +110,55 @@ export const actions = {
       }
       console.log(false)
     }
+  },
+  removePost(context,postID) {
+    this.$axios.$post(process.env.API_URL + "/remove",{
+      postID
+    })
+      .then(result => {
+        console.log("from removePost request" + result)
+      })
+    context.dispatch('removeFromLocalStorageArray',{
+      lsk: "posts",
+      itemToRemove: postID
+    })
+    context.state.posts = context.state.posts.filter(el => el._id !== postID)
+  },
+  toggleLike(context,payload){
+    this.$axios.$post(process.env.API_URL + "/toggleLike",{
+      like: payload.like,
+      id: payload.id
+    })
+      .then(result => {
+        console.log("response from toggleLike")
+      })
+    if(payload.like) {
+      context.dispatch('addToLocalStorageArray',{
+        lsk: "likes",
+        itemToAdd: payload.id
+      })
+    }
+    else if(!payload.like) {
+      context.dispatch('removeFromLocalStorageArray',{
+        lsk: "likes",
+        itemToRemove: payload.id
+      })
+    }
+  },
+  resetInputs(context) {
+    var s = context.state
+    s.startDate = new Date()
+    s.endDate = new Date()
+    s.additionalInformation = ""
+  },
+  addToLocalStorageArray(context,payload){
+    var arr = JSON.parse(localStorage.getItem(payload.lsk)) // lsk: Local Storage Key
+    arr.push(payload.itemToAdd)
+    localStorage.setItem(payload.lsk,JSON.stringify(arr))
+  },
+  removeFromLocalStorageArray(context,payload) {
+    var arr = JSON.parse(localStorage.getItem(payload.lsk)) // lsk: Local Storage Key
+    arr.splice(arr.indexOf(payload.itemToRemove),1)
+    localStorage.setItem(payload.lsk,JSON.stringify(arr))
   }
-
-
-
-  // trial(context){
-  //   this.$router.push('/')
-  //   console.log(this.$router.mode)
-  // },
 }

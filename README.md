@@ -10,7 +10,7 @@ $ git clone https://github.com/Abdullah-V/cargoglobal-frontend.git
 
 $ cd cargoglobal-frontend
 
-$ npm install
+$ npm i
 
 $ npm run dev
 

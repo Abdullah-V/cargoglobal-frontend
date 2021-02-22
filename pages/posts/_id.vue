@@ -18,14 +18,16 @@
       </button>
 
       <button
+        v-if="isMine"
         class="secondary-button"
         style="width: 13%;height: 45px;border-radius: 2px;font-size: 18px;"
       >
         <i class="fas fa-trash"></i>
       </button>
 
-      <button @click="toggleLike()" v-if="!isLiked" class="like"> <i class="far fa-heart"></i>  86 </button>
-      <button @click="toggleLike()" v-if="isLiked" class="like" style="color: var(--primary-color)"> <i class="fas fa-heart"></i>  86 </button>
+      <button @click="toggleLike()" v-if="!isLiked" class="like"> <i class="far fa-heart"></i> {{ infos.likeCount }} </button>
+      <button @click="toggleLike()" v-if="isLiked" class="like" style="color: var(--primary-color)"> <i class="fas fa-heart"></i>
+        {{ infos.likeCount }} </button>
 
       <button
         class="primary-button"
@@ -51,11 +53,11 @@
                         height: 40px;
                         border-radius: 4px;
                       "
-                 src="https://restcountries.eu/data/aze.svg"
+                 :src="infos.startFlag"
                  alt="">
-            <h1>Azerbaijan - Naxcivan</h1>
+            <h1>{{ infos.startCountry }} - {{ infos.startCity }}</h1>
             <v-date-picker
-              :value="new Date()"
+              :value="new Date(infos.startDate)"
               color="red"
               locale="tr"
               class="date-picker-displayer"
@@ -73,12 +75,12 @@
                         height: 40px;
                         border-radius: 4px;
                       "
-                 src="https://restcountries.eu/data/tur.svg"
+                 :src="infos.endFlag"
                  alt="">
 
-            <h1>Turkey - Ankara</h1>
+            <h1>{{ infos.endCountry }} - {{ infos.endCity }}</h1>
             <v-date-picker
-              :value="new Date()"
+              :value="new Date(infos.endDate)"
               color="red"
               locale="tr"
               class="date-picker-displayer"
@@ -91,9 +93,9 @@
 
       <div class="second-details-container">
 
-        <div class="additional-infos">
+        <div v-if="infos.additionalInformation" class="additional-infos">
           <h2 style="color: #515151;font-weight: lighter">Ek bilgiler: </h2>
-          <pre style="text-align: center;font-size: 22px;margin: 30px 0px 0px 20px">Lorem ipsum dolor sit amet consectetur adipiscing elit dignissim rutrum et, cubilia turpis vitae aenean nisl nascetur auctor parturient tellus morbi pellentesque.</pre>
+          <pre style="text-align: center;font-size: 22px;margin: 30px 0px 0px 20px">{{ infos.additionalInformation }}</pre>
         </div>
 
         <div class="additional-infos2">
@@ -109,7 +111,7 @@
           <h3 class="key">Cikisa kalan:</h3>
           <h2 class="value">2 gun 18 saat</h2>
           <h3 class="key">Telefon numarasi :</h3>
-          <h2 class="value">+994553169384</h2>
+          <h2 class="value">{{ infos.phoneNumber }}</h2>
           <h3 class="key">Yayinlanma tarihi:</h3>
           <h2 class="value">16 subat 2021</h2>
 
@@ -121,22 +123,19 @@
 
 
     <div style="margin-top: 20px;height: 130px;display: flex;align-items: center;justify-content: center;flex-direction: column">
-      <h1 v-if="$store.state.haveSimilar" style="font-size: 40px">Benzer ilanlar</h1>
+      <h1 v-if="similarPosts.length" style="font-size: 40px">Benzer ilanlar</h1>
       <h1 v-else style="font-size: 40px">Benzer ilan bulunmuyor</h1>
-      <hr v-if="$store.state.haveSimilar" style="width: 170px;margin-top: 20px">
+      <hr v-if="similarPosts.length" style="width: 170px;margin-top: 20px">
       <hr v-else style="width: 250px;margin-top: 20px">
     </div>
 
-    <lottie v-if="!$store.state.haveSimilar" width="50%" :height="400" :options="lottieOptions" v-on:animCreated="handleAnimation" />
+
+    <lottie v-if="!similarPosts.length" width="50%" :height="400" :options="lottieOptions" v-on:animCreated="handleAnimation" />
 
 
-    <div v-if="$store.state.haveSimilar" class="cards">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+
+    <div v-if="similarPosts.length" class="cards">
+      <Card :key="post._id" v-for="post in similarPosts" :infos="post" />
     </div>
 
 
@@ -153,8 +152,17 @@ export default {
     Card,
     lottie
   },
+  created() {
+    this.fetchData()
+  },
+  watch: {
+    '$route': 'fetchData'
+  },
   data() {
     return {
+      infos: {},
+      similarPosts: [],
+      isMine: false,
       isLiked: false,
       anim: null,
       lottieOptions: {
@@ -169,13 +177,77 @@ export default {
     handleAnimation(anim) {
       this.anim = anim;
       // this.anim.setSpeed(1.5)
-    }
+    },
+    fetchData(){
+      this.$axios.$post(process.env.API_URL + "/getSinglePost",{
+          id: this.$route.params.id
+        })
+        .then(result => {
+          if(result) {
+            this.infos = result.post
+            this.similarPosts = result.similarPosts
+            // console.log(result)
+            if(process.client){
+              this.isMine = JSON.parse(localStorage.getItem('posts')).includes(this.infos._id)
+            }
+          }else {
+            // console.log("result is false")
+            this.$router.push({path: "/404"})
+          }
+        })
+    },
   },
   head() {
     return {
       title: "İlan detayları | CARGOGLOBAL"
     }
-  }
+  },
+
+
+
+
+
+
+
+
+
+
+
+  // middleware(context) {
+  //   // context.$axios.$post(process.env.API_URL + "/getSinglePost",{
+  //   //   id: context.params.id
+  //   // })
+  //   // .then(result => {
+  //   //   this.infos = result.post
+  //   //   this.similarPosts = result.similarPosts
+  //   //   console.log(result)
+  //   //   console.log("Selamun Aleykum")
+  //   // })
+  //   // console.log("Selamun Aleykum2")
+  // //   fetch(process.env.API_URL + "/getSinglePost",{
+  // //     method: 'POST',
+  // //     body: {
+  // //       id: context.params.id
+  // //     }
+  // //   })
+  // //     .then((resp) => resp.json())
+  // //     .then(data => {
+  // //       console.log(data)
+  // //     },
+  // },
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 </script>

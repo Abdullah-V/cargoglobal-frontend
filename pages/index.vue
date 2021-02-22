@@ -5,7 +5,7 @@
     <div v-if="$store.state.posts" style="height: 130px;display: flex;align-items: center;justify-content: center;flex-direction: column">
       <h1 style="font-size: 40px">Tüm ilanlar</h1>
       <hr style="width: 150px;margin-top: 20px">
-      <h3 style="margin-top: 15px;color: #4a4a4a">Toplam 24 ilan</h3>
+      <h3 style="margin-top: 15px;color: #4a4a4a">Toplam {{ $store.state.posts.length }} ilan</h3>
     </div>
 
 
@@ -18,26 +18,7 @@
 
     <div class="cards" v-if="$store.state.posts">
 
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      <Card v-for="post in $store.state.posts" :infos="post" :key="post._id" />
 
     </div>
 

@@ -58,8 +58,13 @@ export default {
     {
       src: '~/plugins/hello.js',
       ssr: false
-    }
+    },
   ],
+
+  env: {
+    secretKey: "this is a secret key",
+    API_URL: "http://localhost:3001/api",
+  },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -81,7 +86,7 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en'
+      lang: 'tr'
     }
   },
 

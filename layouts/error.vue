@@ -9,7 +9,7 @@
 
     <div v-else>
       <lottie width="50%" :height="400" :options="lottieOptions500" v-on:animCreated="handleAnimation" />
-      <h1 style="text-align: center;margin-top: 20px">Bilinmedik bir sorunla karşı karşıyayız.Lütfen bizimle <a href="https://t.me/Abdullah_V_2005">iletişime geçin</a> <br><br> <a href="/"> <button style="width: 115px;height: 45px;border-radius: 3px;" class="secondary-button">Eve dön</button></a> </h1>
+      <h1 style="text-align: center;margin-top: 20px">Bilinmedik bir sorunla karşı karşıyayız.Lütfen bizimle <a class="link" href="https://t.me/Abdullah_V_2005">iletişime geçin</a> <br><br> <a href="/"> <button style="width: 115px;height: 45px;border-radius: 3px;" class="secondary-button">Eve dön</button></a> </h1>
 
     </div>
 
