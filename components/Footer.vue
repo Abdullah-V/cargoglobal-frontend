@@ -185,7 +185,7 @@ export default {
 @media only screen and (max-width: 1215px) {
   .footer-root {
     flex-direction: column;
-    height: 800px;
+    height: 980px;
     align-items: center;
   }
   [class*="footer-section"] {

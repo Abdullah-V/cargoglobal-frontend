@@ -20,6 +20,7 @@ export const state = () => ({
   endFlag: "https://restcountries.eu/data/tur.svg",
   errors: [],
   posts: true,
+  searchText: "",
 
 
   // Only for development
@@ -98,7 +99,7 @@ export const actions = {
           this.$router.push("/posts/" + result._id)
         })
       context.dispatch('resetInputs')
-      console.log(true)
+      // console.log(true)
     }else {
       if(!s.startDate || !s.endDate){
         s.errors.push("Tarih alanları zorunludur.")
@@ -109,7 +110,7 @@ export const actions = {
       if(!s.isValidPhoneNumber){
         s.errors.push("Telefon numarası geçersiz.")
       }
-      console.log(false)
+      // console.log(false)
     }
   },
   removePost(context,postID) {
@@ -117,7 +118,7 @@ export const actions = {
       postID
     })
       .then(result => {
-        console.log("from removePost request" + result)
+        // console.log("from removePost request" + result)
       })
     context.dispatch('removeFromLocalStorageArray',{
       lsk: "posts",
@@ -135,7 +136,7 @@ export const actions = {
       id: payload.id
     })
       .then(result => {
-        console.log("response from toggleLike")
+        // console.log("response from toggleLike")
       })
     if(payload.like) {
       context.dispatch('addToLocalStorageArray',{

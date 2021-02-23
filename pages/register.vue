@@ -2,20 +2,21 @@
   <div class="login-root">
     <div class="login-box">
       <h1 class="login-text">Kayıt ol</h1>
+      <span style="margin: 10px 0 40px 0;color: black;font-weight: bolder">Siteyi kullanmak için giriş yapmanız gerekmiyor | Bu sayfa çalışmıyor</span>
       <div class="fields">
         <label for="f1" class="one-field">
           <i class="fas fa-user"></i>
-          <input id="f1" placeholder="İsminiz" type="text">
+          <input autocomplete="off"  id="f1" placeholder="İsminiz" type="text">
         </label>
 
         <label for="f2" class="one-field">
           <i class="fas fa-lock"></i>
-          <input id="f2" placeholder="Parolanız" type="password">
+          <input  autocomplete="off" id="f2" placeholder="Parolanız" type="password">
         </label>
 
         <label for="f3" class="one-field">
           <i class="fas fa-lock"></i>
-          <input id="f3" placeholder="Parolanız(tekrar)" type="password">
+          <input autocomplete="off"  id="f3" placeholder="Parolanız(tekrar)" type="password">
         </label>
 
 

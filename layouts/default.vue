@@ -46,15 +46,15 @@ export default {
     if(process.client){
 
       if(!localStorage.getItem("posts")){
-        console.log("not posts")
+        // console.log("not posts")
         localStorage.setItem('posts',JSON.stringify([]))
       }
       if(!localStorage.getItem("likes")){
-        console.log("not likes")
+        // console.log("not likes")
         localStorage.setItem('likes',JSON.stringify([]))
       }
 
-      console.log(localStorage)
+      // console.log(localStorage)
 
       window.addEventListener("scroll",() => {
 

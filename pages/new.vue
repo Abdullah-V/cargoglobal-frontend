@@ -17,7 +17,7 @@
     <div class="start-and-end">
       <div class="start">
         <div style="height: 80px;display: flex;align-items: center;justify-content: center;flex-direction: column">
-          <h1 style="font-size: 35px">Çıkış</h1>
+          <h1 style="font-size: 35px">Çıkış<span style="color: red"> * </span></h1>
           <hr style="width: 45px;margin-top: 20px">
         </div>
         <div class="dropdowns">
@@ -43,7 +43,7 @@
 
       <div class="end">
         <div style="height: 100px;display: flex;align-items: center;justify-content: center;flex-direction: column">
-          <h1 style="font-size: 35px">Varış</h1>
+          <h1 style="font-size: 35px">Varış<span style="color: red"> * </span></h1>
           <hr style="width: 45px;margin-top: 20px">
         </div>
 
@@ -91,7 +91,7 @@
     <div class="phone-number-root">
 
           <div style="height: 60px;display: flex;align-items: center;justify-content: center;flex-direction: column">
-            <h1 style="font-size: 25px">Telefon numarası</h1>
+            <h1 style="font-size: 25px">Telefon numarası<span style="color: red"> * </span></h1>
             <hr style="width: 125px;margin-top: 20px">
           </div>
 
@@ -129,6 +129,10 @@
     </div>
 
 
+    <h3 style="margin-bottom: 30px;text-align: center;color: #262626"><span style="color: red">NOT :</span> İlanınız varış zamanından bir gün sonra otomatik olarak silinecektir.</h3>
+    <h3 style="margin-bottom: 80px;text-align: center;color: #262626"><span style="color: red">NOT :</span> Eğer aradığınız şehir listelerde yoksa, en yakın şehri seçin.Gerçek şehri ek bilgiler kısmına yaza bilirsiniz.</h3>
+
+
     <div class="add-btn-div">
       <button class="add primary-button" @click="$store.dispatch('newPost')">Ekle <i style="margin: 0px 3px" class="fas fa-plus"></i></button>
     </div>
@@ -151,6 +155,9 @@ export default {
     return {
       title: "Yeni ilan ekle | CARGOGLOBAL"
     }
+  },
+  created() {
+    this.$store.state.errors = []
   },
   methods: {
     onUpdate (event) {

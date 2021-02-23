@@ -25,6 +25,11 @@ export default {
     Card,
     lottie
   },
+  head() {
+    return {
+      title: "Benim ilanlarım | CARGOGLOBAL"
+    }
+  },
   data() {
     return {
       anim: null,
