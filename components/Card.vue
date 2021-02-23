@@ -40,7 +40,7 @@
     <div class="status" v-if="status === 'red'">
       <span class="ball" style="background: red;"></span>
       <div style="margin: 0px 5px"></div>
-      <h3>Cikmayi bekliyor</h3>
+      <h3>Çıkmayı bekliyor</h3>
     </div>
 
     <div class="status" v-else-if="status === 'yellow'">
@@ -52,7 +52,7 @@
     <div class="status" v-else-if="status === 'green'">
       <span class="ball" style="background: #27AE60;"></span>
       <div style="margin: 0px 5px"></div>
-      <h3>Vardi</h3>
+      <h3>Vardı</h3>
     </div>
 
 

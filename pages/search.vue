@@ -55,7 +55,8 @@ export default {
       // console.log(this.$route.query)
       if(this.$route.query.q && r.test(this.$route.query.q)){
         this.$axios.$post(process.env.API_URL + "/search",{
-          text: String(this.$route.query.q)
+          text: String(this.$route.query.q),
+          API_KEY: process.env.API_KEY
         })
         .then(result => {
           this.posts = result

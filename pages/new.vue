@@ -129,8 +129,8 @@
     </div>
 
 
-    <h3 style="margin-bottom: 30px;text-align: center;color: #262626"><span style="color: red">NOT :</span> İlanınız varış zamanından bir gün sonra otomatik olarak silinecektir.</h3>
-    <h3 style="margin-bottom: 80px;text-align: center;color: #262626"><span style="color: red">NOT :</span> Eğer aradığınız şehir listelerde yoksa, en yakın şehri seçin.Gerçek şehri ek bilgiler kısmına yaza bilirsiniz.</h3>
+    <h3 style="margin: 0 20px 30px 20px;text-align: center;color: #262626"><span style="color: red">NOT :</span> İlanınız varış zamanından bir gün sonra otomatik olarak silinecektir.</h3>
+    <h3 style="margin: 0 20px 80px 20px;text-align: center;color: #262626"><span style="color: red">NOT :</span> Eğer aradığınız şehir listelerde yoksa, en yakın şehri seçin.Gerçek şehri ek bilgiler kısmına yaza bilirsiniz.</h3>
 
 
     <div class="add-btn-div">

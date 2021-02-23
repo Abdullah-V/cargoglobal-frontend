@@ -15,8 +15,6 @@
     "core-js": "^3.8.2",
     "nuxt": "^2.14.12",
     "v-calendar": "^2.2.3",
-    "vue-aos": "^1.1.0",
-    "vue-flagpack": "^1.0.1",
     "vue-lottie": "^0.2.1",
     "vue-phone-number-input": "^1.1.10"
   },

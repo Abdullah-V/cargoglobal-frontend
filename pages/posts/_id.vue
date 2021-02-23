@@ -116,7 +116,7 @@
 
           <div style="display: flex;" v-if="status === 'red'">
             <span style="margin: 4px 10px 0 30px;width: 20px;height: 20px;border-radius: 10px;background: red;"></span>
-            <h2 style="padding: 0;" class="value">Cikmayi bekliyor</h2>
+            <h2 style="padding: 0;" class="value">Çıkmayı bekliyor</h2>
           </div>
 
           <div style="display: flex;" v-else-if="status === 'yellow'">
@@ -126,7 +126,7 @@
 
           <div style="display: flex;" v-else-if="status === 'green'">
             <span style="margin: 4px 10px 0 30px;width: 20px;height: 20px;border-radius: 10px;background: green;"></span>
-            <h2 style="padding: 0;" class="value">Vardi</h2>
+            <h2 style="padding: 0;" class="value">Vardı</h2>
           </div>
 
 <!--          {{ status }}-->
@@ -233,7 +233,8 @@ export default {
     },
     fetchData(){
       this.$axios.$post(process.env.API_URL + "/getSinglePost",{
-          id: this.$route.params.id
+          id: this.$route.params.id,
+        API_KEY: process.env.API_KEY
         })
         .then(result => {
           if(result) {

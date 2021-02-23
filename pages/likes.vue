@@ -1,15 +1,15 @@
 <template>
   <div class="likes-root">
-    <div style="margin: 80px 0" v-if="!haveLikes" class="not-likes">
+    <div style="margin: 80px 0" v-if="!posts.length" class="not-likes">
       <h1 style="text-align: center;font-size: 42px">Beğenilen ilanınız yok.</h1>
       <lottie width="50%" :height="500" :options="lottieOptions" v-on:animCreated="handleAnimation" />
     </div>
-    <div v-if="haveLikes" style="height: 130px;display: flex;align-items: center;justify-content: center;flex-direction: column">
+    <div v-if="posts.length" style="height: 130px;display: flex;align-items: center;justify-content: center;flex-direction: column">
       <h1 style="font-size: 40px">Beğenilen ilanlar</h1>
       <hr style="width: 170px;margin-top: 20px">
       <h3 style="margin-top: 15px;color: #4a4a4a">Toplam {{ posts.length }} beğenilen ilan</h3>
     </div>
-    <div v-if="haveLikes" class="likes">
+    <div v-if="posts.length" class="likes">
       <Card v-for="post in posts" :key="post._id" :infos="post" />
     </div>
   </div>
@@ -37,7 +37,6 @@ export default {
         animationData: animationData.default,
       },
 
-      haveLikes: false,
       posts: [],
     }
   },
@@ -50,17 +49,16 @@ export default {
   created() {
     if(process.client){
       if(JSON.parse(localStorage.getItem('likes')).length){
-        this.haveLikes = true
         // console.log(true)
         this.$axios.$post(process.env.API_URL + "/getMultiplePostsByID",{
-          arr: JSON.parse(localStorage.getItem('likes'))
+          arr: JSON.parse(localStorage.getItem('likes')),
+          API_KEY: process.env.API_KEY
         })
         .then(result => {
           this.posts = result
           // console.log(this.posts)
         })
       }else {
-        this.haveLikes = false
         // console.log(false)
       }
     }

@@ -1,3 +1,5 @@
+const secret = require('./secret.json')
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -36,10 +38,6 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     {
-      src: "~/plugins/vue-flagpack.js",
-      ssr: false
-    },
-    {
       src: "~/plugins/aos",
       ssr: false
     },
@@ -62,9 +60,8 @@ export default {
   ],
 
   env: {
-    secretKey: "this is a secret key",
-    API_URL: "http://localhost:3001/api",
-    API_KEY: "buradaapikeyolmasigerekiramaaklimabirseygelmedi:)",
+    API_URL: secret.API_URL,
+    API_KEY: secret.API_KEY,
   },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -87,8 +84,15 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'tr'
-    }
+      lang: 'tr',
+      name: 'Cargoglobal',
+      short_name: 'Cargoglobal',
+      description: "Cargoglobal is a site for sharing logistics advertisements",
+      theme_color: "#fc1515",
+    },
+    meta: {
+      author: 'Abdullah Veliyev',
+    },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

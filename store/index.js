@@ -55,7 +55,9 @@ export const actions = {
       })
   },
   getAllPosts(context) {
-    this.$axios.$get(process.env.API_URL + "/all")
+    this.$axios.$post(process.env.API_URL + "/all",{
+      API_KEY: process.env.API_KEY
+    })
       .then(result => {
         context.state.posts = result
       })
@@ -89,6 +91,7 @@ export const actions = {
         endDate: s.endDate,
         phoneNumber: s.fullPhoneNumber,
         additionalInformation: s.additionalInformation,
+        API_KEY: process.env.API_KEY
       })
         .then(result => {
           context.state.posts.unshift(result)
@@ -115,7 +118,8 @@ export const actions = {
   },
   removePost(context,postID) {
     this.$axios.$post(process.env.API_URL + "/remove",{
-      postID
+      postID,
+      API_KEY: process.env.API_KEY
     })
       .then(result => {
         // console.log("from removePost request" + result)
@@ -133,7 +137,8 @@ export const actions = {
   toggleLike(context,payload){
     this.$axios.$post(process.env.API_URL + "/toggleLike",{
       like: payload.like,
-      id: payload.id
+      id: payload.id,
+      API_KEY: process.env.API_KEY
     })
       .then(result => {
         // console.log("response from toggleLike")

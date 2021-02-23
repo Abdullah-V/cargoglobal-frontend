@@ -50,7 +50,8 @@ export default {
     if(process.client){
       if(JSON.parse(localStorage.getItem('posts')).length){
         this.$axios.$post(process.env.API_URL + "/getMultiplePostsByID",{
-          arr: JSON.parse(localStorage.getItem('posts'))
+          arr: JSON.parse(localStorage.getItem('posts')),
+          API_KEY: process.env.API_KEY
         })
           .then(result => {
             this.posts = result
