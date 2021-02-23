@@ -232,7 +232,7 @@ export default {
       }
     },
     fetchData(){
-      this.$axios.$post(process.env.API_URL + "/getSinglePost",{
+      this.$axios.$post("https://cargoglobal-api.herokuapp.com/api/getSinglePost",{
           id: this.$route.params.id,
         API_KEY: process.env.API_KEY
         })

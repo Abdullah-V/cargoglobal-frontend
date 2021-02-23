@@ -55,7 +55,7 @@ export const actions = {
       })
   },
   getAllPosts(context) {
-    this.$axios.$post(process.env.API_URL + "/all",{
+    this.$axios.$post("https://cargoglobal-api.herokuapp.com/api/all",{
       API_KEY: process.env.API_KEY
     })
       .then(result => {
@@ -80,7 +80,7 @@ export const actions = {
     var s = context.state
     s.errors = []
     if((s.startDate && s.endDate) && (s.startDate <= s.endDate) && (s.isValidPhoneNumber)){
-      this.$axios.$post(process.env.API_URL + "/new",{
+      this.$axios.$post("https://cargoglobal-api.herokuapp.com/api/new",{
         startCountry: s.currentStartCountry,
         endCountry: s.currentEndCountry,
         startCity: s.currentStartCity,
@@ -117,7 +117,7 @@ export const actions = {
     }
   },
   removePost(context,postID) {
-    this.$axios.$post(process.env.API_URL + "/remove",{
+    this.$axios.$post("https://cargoglobal-api.herokuapp.com/api/remove",{
       postID,
       API_KEY: process.env.API_KEY
     })
@@ -135,7 +135,7 @@ export const actions = {
     context.state.posts = context.state.posts.filter(el => el._id !== postID)
   },
   toggleLike(context,payload){
-    this.$axios.$post(process.env.API_URL + "/toggleLike",{
+    this.$axios.$post("https://cargoglobal-api.herokuapp.com/api/toggleLike",{
       like: payload.like,
       id: payload.id,
       API_KEY: process.env.API_KEY

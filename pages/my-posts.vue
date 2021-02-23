@@ -49,7 +49,7 @@ export default {
   created() {
     if(process.client){
       if(JSON.parse(localStorage.getItem('posts')).length){
-        this.$axios.$post(process.env.API_URL + "/getMultiplePostsByID",{
+        this.$axios.$post("https://cargoglobal-api.herokuapp.com/api/getMultiplePostsByID",{
           arr: JSON.parse(localStorage.getItem('posts')),
           API_KEY: process.env.API_KEY
         })
