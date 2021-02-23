@@ -21,7 +21,7 @@
         <a target="_blank" class="link" href="https://github.com/Abdullah-V/cargoglobal-frontend">
           kodlarına github üzerinden erişilip katkı sağlana bilir
         </a>.
-        Cargoglobal <a class="link" href="https://github.com/Abdullah-V/cargoglobal-frontend/blob/master/LICENSE">MIT lisansıyla</a> korunmaktadır.
+        Cargoglobal <a target="_blank" class="link" href="https://github.com/Abdullah-V/cargoglobal-frontend/blob/master/LICENSE">MIT lisansıyla</a> korunmaktadır.
         Görüş ve önerileriniz için iletişime geçe bilirsiniz.
       </p>
     </div>
