@@ -1,4 +1,4 @@
-const secret = require('./secret.json')
+// const secret = require('./secret.json')
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -60,15 +60,17 @@ export default {
   ],
 
   env: {
-    API_URL: secret.API_URL,
-    API_KEY: secret.API_KEY,
+    API_URL: process.env.API_URL,
+    API_KEY: process.env.API_KEY,
   },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [],
+  buildModules: [
+    '@nuxtjs/dotenv'
+  ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
