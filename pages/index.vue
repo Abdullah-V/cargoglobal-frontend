@@ -2,7 +2,7 @@
   <div class="index-root">
 
 
-    <div v-if="$store.state.posts" style="height: 130px;display: flex;align-items: center;justify-content: center;flex-direction: column">
+    <div v-if="$store.state.posts.length" style="height: 130px;display: flex;align-items: center;justify-content: center;flex-direction: column">
       <h1 style="font-size: 40px">Tüm ilanlar</h1>
       <hr style="width: 150px;margin-top: 20px">
       <h3 style="margin-top: 15px;color: #4a4a4a">Toplam {{ $store.state.posts.length }} ilan</h3>
@@ -22,8 +22,8 @@
 
     </div>
 
-    <div v-if="!$store.state.posts" class="lottie-container">
-      <h1 style="color: #4a4a4a;text-align: center;margin-top: 5px;font-size: 40px">İlan yok.<br><nuxt-link style="font-size: 30px" to="/new" tag="a">Eklemeye ne dersin?</nuxt-link> </h1>
+    <div v-if="!$store.state.posts.length" class="lottie-container">
+      <h1 style="color: #4a4a4a;text-align: center;margin-top: 5px;font-size: 40px">İlan yok.<br><nuxt-link class="link" style="font-size: 30px" to="/new" tag="a">Eklemeye ne dersin?</nuxt-link> </h1>
       <lottie width="50%" :height="500" :options="lottieOptions" v-on:animCreated="handleAnimation" />
     </div>
 

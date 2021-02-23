@@ -90,11 +90,12 @@ export const actions = {
         additionalInformation: s.additionalInformation,
       })
         .then(result => {
-          context.state.posts.push(result)
+          context.state.posts.unshift(result)
           context.dispatch('addToLocalStorageArray',{
             lsk: "posts",
             itemToAdd: result._id,
           })
+          this.$router.push("/posts/" + result._id)
         })
       context.dispatch('resetInputs')
       console.log(true)
@@ -120,6 +121,10 @@ export const actions = {
       })
     context.dispatch('removeFromLocalStorageArray',{
       lsk: "posts",
+      itemToRemove: postID
+    })
+    context.dispatch('removeFromLocalStorageArray',{
+      lsk: "likes",
       itemToRemove: postID
     })
     context.state.posts = context.state.posts.filter(el => el._id !== postID)

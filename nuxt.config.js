@@ -64,6 +64,7 @@ export default {
   env: {
     secretKey: "this is a secret key",
     API_URL: "http://localhost:3001/api",
+    API_KEY: "buradaapikeyolmasigerekiramaaklimabirseygelmedi:)",
   },
 
   // Auto import components: https://go.nuxtjs.dev/config-components

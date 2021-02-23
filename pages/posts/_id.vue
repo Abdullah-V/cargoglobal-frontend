@@ -29,12 +29,24 @@
       <button @click="toggleLike()" v-if="isLiked" class="like" style="color: var(--primary-color)"> <i class="fas fa-heart"></i>
         {{ infos.likeCount }} </button>
 
+
+<!--      <button-->
+<!--        class="primary-button"-->
+<!--        style="width: 26%;height: 45px;border-radius: 3px;font-size: 16px;"-->
+<!--      >-->
+<!--        <i style="margin: 0 8px 0 0" class="fas fa-phone-alt"></i>-->
+<!--        Ara-->
+<!--      </button>-->
+
+
       <button
         class="primary-button"
         style="width: 26%;height: 45px;border-radius: 3px;font-size: 16px;"
       >
-        <i style="margin: 0 8px 0 0" class="fas fa-phone-alt"></i>
-        Ara
+        <a :href="'tel:' + infos.phoneNumber" style="width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;color: white">
+          <i style="margin: 0 8px 0 0" class="fas fa-phone-alt"></i>
+          Ara
+        </a>
       </button>
 
     </div>
@@ -45,7 +57,7 @@
       <div class="first-details-container">
 
         <div class="start">
-          <h2 style="color: #515151;font-weight: lighter">Cikis: </h2>
+          <h2 style="color: #515151;font-weight: lighter">Çıkış: </h2>
           <div class="inner">
 
             <img style="
@@ -67,7 +79,7 @@
         </div>
 
         <div class="end">
-          <h2 style="color: #515151;font-weight: lighter">Varis: </h2>
+          <h2 style="color: #515151;font-weight: lighter">Varış: </h2>
           <div class="inner">
 
             <img style="
@@ -102,18 +114,31 @@
 
           <h3 class="key">Durum:</h3>
 
-          <div style="display: flex;">
+          <div style="display: flex;" v-if="status === 'red'">
             <span style="margin: 4px 10px 0 30px;width: 20px;height: 20px;border-radius: 10px;background: red;"></span>
-            <h2 style="padding: 0;" class="value">Bekliyor</h2>
+            <h2 style="padding: 0;" class="value">Cikmayi bekliyor</h2>
           </div>
 
+          <div style="display: flex;" v-else-if="status === 'yellow'">
+            <span style="margin: 4px 10px 0 30px;width: 20px;height: 20px;border-radius: 10px;background: yellow;"></span>
+            <h2 style="padding: 0;" class="value">Yolda</h2>
+          </div>
 
-          <h3 class="key">Cikisa kalan:</h3>
-          <h2 class="value">2 gun 18 saat</h2>
-          <h3 class="key">Telefon numarasi :</h3>
+          <div style="display: flex;" v-else-if="status === 'green'">
+            <span style="margin: 4px 10px 0 30px;width: 20px;height: 20px;border-radius: 10px;background: green;"></span>
+            <h2 style="padding: 0;" class="value">Vardi</h2>
+          </div>
+
+<!--          {{ status }}-->
+
+<!--          <h3 class="key">Çıkışa kalan:</h3>-->
+<!--          <h2 class="value">2 gun 18 saat</h2>-->
+
+
+          <h3 class="key">Telefon numarası :</h3>
           <h2 class="value">{{ infos.phoneNumber }}</h2>
-          <h3 class="key">Yayinlanma tarihi:</h3>
-          <h2 class="value">16 subat 2021</h2>
+          <h3 class="key">Yayınlanma tarihi:</h3>
+          <h2 class="value">{{ new Date(infos.createdDate).getDate() }}.<span v-if="new Date(infos.createdDate).getMonth() <= 9">0</span>{{ new Date(infos.createdDate).getMonth() }}.{{ new Date(infos.createdDate).getFullYear() }}</h2>
 
         </div>
 
@@ -154,6 +179,7 @@ export default {
   },
   created() {
     this.fetchData()
+    // console.log(this.$route.query)
   },
   watch: {
     '$route': 'fetchData'
@@ -164,6 +190,7 @@ export default {
       similarPosts: [],
       isMine: false,
       isLiked: false,
+      status: "",
       anim: null,
       lottieOptions: {
         animationData: animationData.default,
@@ -172,11 +199,37 @@ export default {
   },
   methods: {
     toggleLike(){
-      this.isLiked = !this.isLiked
+      if(this.isLiked) {
+        this.infos.likeCount--
+        this.isLiked = false
+        this.$store.dispatch('toggleLike',{
+          like: false,
+          id: this.infos._id
+        })
+      }else {
+        this.infos.likeCount++
+        this.isLiked = true
+        this.$store.dispatch('toggleLike',{
+          like: true,
+          id: this.infos._id
+        })
+      }
     },
     handleAnimation(anim) {
       this.anim = anim;
       // this.anim.setSpeed(1.5)
+    },
+    checkStatus(){
+      const now = new Date()
+      if(new Date(this.infos.startDate) >= now){
+        this.status = "red"
+      }
+      else if(new Date(this.infos.startDate) <= now && new Date(this.infos.endDate) >= now){
+        this.status = "yellow"
+      }
+      else if(now >= new Date(this.infos.endDate)) {
+        this.status = "green"
+      }
     },
     fetchData(){
       this.$axios.$post(process.env.API_URL + "/getSinglePost",{
@@ -186,6 +239,8 @@ export default {
           if(result) {
             this.infos = result.post
             this.similarPosts = result.similarPosts
+            this.isLiked = JSON.parse(localStorage.getItem('likes')).includes(this.infos._id)
+            this.checkStatus()
             // console.log(result)
             if(process.client){
               this.isMine = JSON.parse(localStorage.getItem('posts')).includes(this.infos._id)
@@ -356,7 +411,7 @@ export default {
 }
 
 .additional-infos2 {
-  height: 90%;
+  height: 80%;
   width: 35%;
   background: #F4F4F4;
   border-radius: 5px;
@@ -376,7 +431,7 @@ pre {
 
 .value {
   padding-left: 30px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   font-weight: lighter;
 }
 
