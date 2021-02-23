@@ -7,6 +7,7 @@ export default function (context) {
     })
   }
   console.clear()
+  console.log(process.env.API_URL)
   console.log(`
 
   email:"abdullahveliyev2005@gmail.com",

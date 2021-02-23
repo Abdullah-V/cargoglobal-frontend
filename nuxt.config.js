@@ -59,10 +59,10 @@ export default {
     },
   ],
 
-  env: {
-    API_URL: process.env.API_URL,
-    API_KEY: process.env.API_KEY,
-  },
+  // env: {
+  //   API_URL: process.env.API_URL,
+  //   API_KEY: process.env.API_KEY,
+  // },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
