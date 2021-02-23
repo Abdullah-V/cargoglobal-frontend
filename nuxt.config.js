@@ -1,5 +1,7 @@
 // const secret = require('./secret.json')
 
+require('dotenv').config()
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
