@@ -67,6 +67,10 @@ export default {
     {
       src: "~plugins/crisp.js",
       mode: "client"
+    },
+    {
+      src: "~/plugins/vue-select.js",
+      mode: 'client'
     }
   ],
 

@@ -16,7 +16,8 @@
     "nuxt": "^2.14.12",
     "v-calendar": "^2.2.3",
     "vue-lottie": "^0.2.1",
-    "vue-phone-number-input": "^1.1.10"
+    "vue-phone-number-input": "^1.1.10",
+    "vue-select": "^3.11.2"
   },
   "devDependencies": {}
 }

@@ -21,8 +21,25 @@
           <hr style="width: 45px;margin-top: 20px">
         </div>
         <div class="dropdowns">
-          <Dropdown class="dd" t="country" connect="currentStartCountry" start-or-end="start" />
-          <Dropdown class="dd" t="city" connect="currentStartCity" start-or-end="start" />
+<!--          <Dropdown class="dd" t="country" connect="currentStartCountry" start-or-end="start" />-->
+<!--          <Dropdown class="dd" t="city" connect="currentStartCity" start-or-end="start" />-->
+
+          <v-select
+            class="dd"
+            @input="setStartCountry"
+            :value="$store.state.currentStartCountry"
+            label="country"
+            :options="$store.state.countries"
+          ></v-select>
+
+          <v-select
+            class="dd"
+            @input="setStartCity"
+            :value="$store.state.currentStartCity"
+            :options="$store.state.startCities"
+          ></v-select>
+
+
         </div>
 
         <v-date-picker
@@ -48,8 +65,24 @@
         </div>
 
         <div class="dropdowns">
-          <Dropdown class="dd" t="country" connect="currentEndCountry" start-or-end="end" />
-          <Dropdown class="dd" t="city" connect="currentEndCity" start-or-end="end" />
+<!--          <Dropdown class="dd" t="country" connect="currentEndCountry" start-or-end="end" />-->
+<!--          <Dropdown class="dd" t="city" connect="currentEndCity" start-or-end="end" />-->
+
+          <v-select
+            class="dd"
+            @input="setEndCountry"
+            :value="$store.state.currentEndCountry"
+            label="country"
+            :options="$store.state.countries"
+          ></v-select>
+
+          <v-select
+            class="dd"
+            @input="setEndCity"
+            :value="$store.state.currentEndCity"
+            :options="$store.state.endCities"
+          ></v-select>
+
         </div>
 
 
@@ -126,6 +159,21 @@
       <textarea v-model="$store.state.additionalInformation" placeholder="Ek bilgiler"></textarea>
 
 
+<!--             {{ $store.state.currentStartCountry }}-->
+<!--      <br>-->
+<!--             {{ $store.state.currentStartCity }}-->
+<!--      <br><br>-->
+
+<!--             {{ $store.state.currentEndCountry }}-->
+<!--      <br>-->
+<!--             {{ $store.state.currentEndCity }}-->
+
+<!--      <br><br><br>-->
+
+<!--      {{ $store.state.startFlag }}-->
+<!--      <br>-->
+<!--      {{ $store.state.endFlag }}-->
+
     </div>
 
 
@@ -166,7 +214,35 @@ export default {
         number: event.formattedNumber,
         isValidNumber: event.isValid,
       })
-    }
+    },
+    async setStartCountry(value) {
+      value = await value || this.$store.state.countries[12]
+      this.$store.state.currentStartCountry = await value.country
+      this.$store.state.currentStartCity = await value.cities[0]
+      this.$store.state.startCities = await value.cities
+      this.$store.dispatch('getFlagURLofCountry',"start")
+      .then(result => {
+        this.$store.state.startFlag = result
+      })
+    },
+    setStartCity(value) {
+      value = value || this.$store.state.startCities[0]
+      this.$store.state.currentStartCity = value
+    },
+    async setEndCountry(value) {
+      value = await value || this.$store.state.countries[181]
+      this.$store.state.currentEndCountry = await value.country
+      this.$store.state.currentEndCity = await value.cities[0]
+      this.$store.state.endCities = await value.cities
+      this.$store.dispatch('getFlagURLofCountry',"end")
+        .then(result => {
+          this.$store.state.endFlag = result
+        })
+    },
+    setEndCity(value) {
+      value = value || this.$store.state.endCities[0]
+      this.$store.state.currentEndCity = value
+    },
   }
 }
 </script>
@@ -205,8 +281,9 @@ export default {
 }
 
 .dropdowns{
-   display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .dp {
@@ -282,19 +359,24 @@ export default {
   font-size: 22px;
 }
 
+.dd {
+  width: 45%;
+}
+
 @media only screen and (max-width: 1158px){
   .dp{
     width: 100%;
   }
   .dd{
     width: 60%;
+    font-size: 18px;
   }
   .text-area-root textarea {
     width: 80%;
   }
 }
 
-@media only screen and (max-width: 812px){
+@media only screen and (max-width: 945px){
   .start-and-end{
     flex-direction: column;
     align-items: center;
@@ -310,6 +392,7 @@ export default {
   }
   .dd {
     width: 40%;
+    font-size: 18px;
   }
   .phone-number-root,
   .text-area-root {
@@ -325,12 +408,13 @@ export default {
 
 }
 
-@media only screen and (max-width: 516px){
+@media only screen and (max-width: 570px){
   .dp{
     width: 100%;
   }
   .dd{
     width: 60%;
+    font-size: 15px;
   }
   .start,
   .end{
