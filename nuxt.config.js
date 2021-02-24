@@ -1,6 +1,6 @@
 // const secret = require('./secret.json')
 
-require('dotenv').config()
+// require('dotenv').config()
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -9,7 +9,12 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: '' },
+      { name: 'author', content: 'Abdullah Veliyev'},
+      { name: 'rating', content: 'general'},
+      { name: 'revisit-after', content: '1 days'},
+      { name: 'keywords', content: 'elan,lojistik,kargo,tır,ilan,cargoglobal,lojistik ilanları,yük maşını,yükdaşıma elanları'},
+      { name: 'language', content: 'tr-TR'}
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -63,15 +68,22 @@ export default {
 
   env: {
     API_URL: process.env.API_URL,
-    API_KEY: process.env.API_KEY,
+    // API_KEY: process.env.API_KEY,
   },
+
+  // privateRuntimeConfig: {
+  //   API_KEY: process.env.API_KEY
+  // },
+  // publicRuntimeConfig: {
+  //   API_URL: process.env.API_URL
+  // },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxtjs/dotenv'
+    // '@nuxtjs/dotenv'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -91,7 +103,7 @@ export default {
       lang: 'tr',
       name: 'Cargoglobal',
       short_name: 'Cargoglobal',
-      description: "Cargoglobal is a site for sharing logistics advertisements",
+      description: "Cargoglobal lojistik ilanlarının paylaşılması için sitedir",
       theme_color: "#fc1515",
     },
     meta: {

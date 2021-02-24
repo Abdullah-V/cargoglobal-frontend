@@ -9,6 +9,9 @@ export default function (context) {
   console.clear()
   console.log("API_URL from process.env: ")
   console.log(process.env.API_URL)
+  // console.log("API_KEY from process.env: ")
+  // console.log(process.env.API_KEY)
+
   // console.log(process.env)
   console.log(`
 

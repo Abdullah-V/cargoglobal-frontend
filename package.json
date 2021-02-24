@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.5",
-    "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/pwa": "^3.3.4",
     "aos": "^2.3.4",
     "core-js": "^3.8.2",
