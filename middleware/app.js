@@ -7,7 +7,8 @@ export default function (context) {
     })
   }
   console.clear()
-  // console.log(process.env.API_URL)
+  console.log("API_URL from process.env: ")
+  console.log(process.env.API_URL)
   // console.log(process.env)
   console.log(`
 

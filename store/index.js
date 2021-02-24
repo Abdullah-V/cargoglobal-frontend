@@ -55,7 +55,7 @@ export const actions = {
       })
   },
   getAllPosts(context) {
-    this.$axios.$post( "https://cargoglobal-api.herokuapp.com/all",{
+    this.$axios.$post( "https://cargoglobal-api.herokuapp.com/api/all",{
       API_KEY: process.env.API_KEY
     })
       .then(result => {
