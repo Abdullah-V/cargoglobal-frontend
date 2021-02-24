@@ -22,7 +22,7 @@
           kodlarına github üzerinden erişilip katkı sağlana bilir
         </a>.
         Cargoglobal <a target="_blank" class="link" href="https://github.com/Abdullah-V/cargoglobal-frontend/blob/master/LICENSE">MIT lisansıyla</a> korunmaktadır.
-        Görüş ve önerileriniz için iletişime geçe bilirsiniz.
+        Görüş ve önerileriniz için iletişime geçe bilirsiniz. <br><br> <b>Abdullah Veliyev</b>
       </p>
     </div>
 
@@ -107,7 +107,7 @@ export default {
 
 .footer-root {
   width: 100%;
-  height: 480px;
+  height: 500px;
   background: white;
   border-radius: 18px 18px 0 0;
   display: flex;
@@ -182,7 +182,7 @@ export default {
   width: 280px;
 }
 
-@media only screen and (max-width: 1215px) {
+@media only screen and (max-width: 1230px) {
   .footer-root {
     flex-direction: column;
     height: 980px;

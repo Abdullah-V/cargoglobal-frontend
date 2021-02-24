@@ -152,6 +152,7 @@
       <h1 v-else style="font-size: 40px">Benzer ilan bulunmuyor</h1>
       <hr v-if="similarPosts.length" style="width: 170px;margin-top: 20px">
       <hr v-else style="width: 250px;margin-top: 20px">
+      <h3 v-if="similarPosts.length" style="margin-top: 15px;color: #4a4a4a">Toplam {{ similarPosts.length }} benzer ilan</h3>
     </div>
 
 
