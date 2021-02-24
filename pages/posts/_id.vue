@@ -21,6 +21,7 @@
         v-if="isMine"
         class="secondary-button"
         style="width: 13%;height: 45px;border-radius: 2px;font-size: 18px;"
+        @click="$store.dispatch('removePost',infos._id);$router.push('/')"
       >
         <i class="fas fa-trash"></i>
       </button>
