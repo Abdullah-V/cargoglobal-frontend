@@ -1,7 +1,7 @@
 <template>
   <div class="search-root">
     <div style="margin-top: 90px" v-if="!posts.length" class="not-result">
-      <h1 style="font-size: 38px;text-align: center"><span style="color: red;font-weight: bolder">{{ term }}</span> ile ilgili hiçbir ilan bulunamadı :(</h1>
+      <h1 style="font-size: 38px;text-align: center"><span style="color: red;font-weight: bolder;margin: 0 10px">{{ term }}</span> ile ilgili hiçbir ilan bulunamadı :(</h1>
     </div>
     <div v-if="!posts.length" class="not-result">
       <lottie width="50%" :height="400" :options="lottieOptions" v-on:animCreated="handleAnimation" />

@@ -117,7 +117,7 @@ export default {
   opacity: 0;
   position: fixed;
   bottom: 4%;
-  right: 3%;
+  left: 3%;
   z-index: 2;
   width: 60px;
   height: 60px;

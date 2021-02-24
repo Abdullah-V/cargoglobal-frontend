@@ -64,6 +64,10 @@ export default {
       src: '~/plugins/hello.js',
       ssr: false
     },
+    {
+      src: "~plugins/crisp.js",
+      mode: "client"
+    }
   ],
 
   env: {
