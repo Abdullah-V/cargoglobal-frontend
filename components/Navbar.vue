@@ -71,7 +71,7 @@
       <div v-if="searchBox" class="search-section">
         <div class="search-box">
           <label for="asd" class="search-icon"><i class="fas fa-search"></i></label>
-          <input autocomplete="off" v-model="$store.state.searchText" @keydown.enter="$router.push({path: '/search',query:{q:$store.state.searchText}})" id="asd" type="text" class="search-input" placeholder='Şehir,ülke,telefon numarası'>
+          <input autocomplete="off" v-model="$store.state.searchText" @keydown.enter="$router.push({path: '/search',query:{q:$store.state.searchText}});searchBox = false" id="asd" type="text" class="search-input" placeholder='Şehir,ülke,telefon numarası'>
         </div>
       </div>
 

@@ -233,9 +233,9 @@ export default {
     },
     fetchData(){
       this.$axios.$post("https://cargoglobal-api.herokuapp.com/api/getSinglePost",{
-          id: this.$route.params.id,
+        id: this.$route.params.id,
         API_KEY: process.env.API_KEY
-        })
+      })
         .then(result => {
           if(result) {
             this.infos = result.post
