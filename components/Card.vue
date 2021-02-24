@@ -16,7 +16,7 @@
 
     <div style="margin: 5px 0px"></div>
 
-      <h2>{{ new Date(infos.startDate).getDate() }}.{{ new Date(infos.startDate).getMonth() }}.{{ new Date(infos.startDate).getFullYear() }}</h2>
+      <h2><span v-if="new Date(infos.startDate).getDate() <= 9">0</span>{{ new Date(infos.startDate).getDate() }}.<span v-if="new Date(infos.startDate).getMonth() <= 9">0</span>{{ new Date(infos.startDate).getMonth() }}.{{ new Date(infos.startDate).getFullYear() }}</h2>
 
 
 
@@ -34,7 +34,7 @@
 
     <div style="margin: 5px 0px"></div>
 
-    <h2>{{ new Date(infos.endDate).getDate() }}.{{ new Date(infos.endDate).getMonth() }}.{{ new Date(infos.endDate).getFullYear() }}</h2>
+    <h2><span v-if="new Date(infos.endDate).getDate() <= 9">0</span>{{ new Date(infos.endDate).getDate() }}.<span v-if="new Date(infos.endDate).getMonth() <= 9">0</span>{{ new Date(infos.endDate).getMonth() }}.{{ new Date(infos.endDate).getFullYear() }}</h2>
 
 
     <div class="status" v-if="status === 'red'">
