@@ -79,7 +79,7 @@ export const actions = {
     })
     var s = context.state
     s.errors = []
-    if((s.startDate && s.endDate) && (s.startDate <= s.endDate) && (s.isValidPhoneNumber)){
+    if((s.additionalInformation.length <= 200) && (s.startDate && s.endDate) && (s.startDate <= s.endDate) && (s.isValidPhoneNumber)){
       this.$axios.$post("https://cargoglobal-api.herokuapp.com/api/new",{
         startCountry: s.currentStartCountry,
         endCountry: s.currentEndCountry,
@@ -112,6 +112,9 @@ export const actions = {
       }
       if(!s.isValidPhoneNumber){
         s.errors.push("Telefon numarası geçersiz.")
+      }
+      if(s.additionalInformation.length > 200){
+        s.errors.push("Ek bilgiler metninin uzunluğu 200'den fazla olmamalıdır.")
       }
       // console.log(false)
     }
