@@ -76,9 +76,9 @@ export default {
   props: ["infos"],
   data(){
     return {
-      isLiked: JSON.parse(localStorage.getItem('likes')).includes(this.infos._id),
+      isLiked: false,
       status: "",
-      isMine: JSON.parse(localStorage.getItem('posts')).includes(this.infos._id),
+      isMine: false,
     }
   },
   methods: {
@@ -114,6 +114,10 @@ export default {
   },
   created() {
     this.checkStatus()
+    if(process.client){
+    this.isLiked = JSON.parse(localStorage.getItem('likes')).includes(this.infos._id)
+        this.isMine = JSON.parse(localStorage.getItem('posts')).includes(this.infos._id)
+    }
   }
 }
 </script>

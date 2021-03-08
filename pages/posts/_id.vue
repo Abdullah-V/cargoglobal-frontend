@@ -1,5 +1,5 @@
 <template>
-  <div class="post-details-root">
+  <div class="post-details-root" v-if="!$fetchState.pending">
 
 
     <div style="height: 130px;display: flex;align-items: center;justify-content: center;flex-direction: column">
@@ -180,12 +180,13 @@ export default {
     lottie
   },
   created() {
-    this.fetchData()
+    // this.fetchData()
     // console.log(this.$route.query)
+    
   },
-  watch: {
-    '$route': 'fetchData'
-  },
+  // watch: {
+  //   '$route': 'fetchData'
+  // },
   data() {
     return {
       infos: {},
@@ -233,32 +234,57 @@ export default {
         this.status = "green"
       }
     },
-    fetchData(){
-      this.$axios.$post("https://cargoglobal-api.herokuapp.com/api/getSinglePost",{
-        id: this.$route.params.id,
-        API_KEY: process.env.API_KEY
-      })
-        .then(result => {
-          if(result) {
-            this.infos = result.post
-            this.similarPosts = result.similarPosts
-            this.isLiked = JSON.parse(localStorage.getItem('likes')).includes(this.infos._id)
-            this.checkStatus()
-            // console.log(result)
-            if(process.client){
-              this.isMine = JSON.parse(localStorage.getItem('posts')).includes(this.infos._id)
-            }
-          }else {
-            // console.log("result is false")
-            this.$router.push({path: "/404"})
-          }
-        })
-    },
+    // fetchData(){
+    //   this.$axios.$post("https://cargoglobal-api.herokuapp.com/api/getSinglePost",{
+    //     id: this.$route.params.id,
+    //     API_KEY: process.env.API_KEY
+    //   })
+    //     .then(result => {
+    //       if(result) {
+    //         this.infos = result.post
+    //         this.similarPosts = result.similarPosts
+    //         this.isLiked = JSON.parse(localStorage.getItem('likes')).includes(this.infos._id)
+    //         this.checkStatus()
+    //         // console.log(result)
+    //         if(process.client){
+    //           this.isMine = JSON.parse(localStorage.getItem('posts')).includes(this.infos._id)
+    //         }
+    //       }else {
+    //         // console.log("result is false")
+    //         this.$router.push({path: "/404"})
+    //       }
+    //     })
+    // },
   },
   head() {
     return {
       title: "İlan detayları | CARGOGLOBAL"
     }
+  },
+  async fetch() {
+    this.infos = await this.$axios.$post("https://cargoglobal-api.herokuapp.com/api/getSinglePost",{
+        id: this.$route.params.id,
+        API_KEY: process.env.API_KEY
+      })
+        .then(async (result) => {
+          if(result) {
+            this.infos = await result.post
+            this.similarPosts = await result.similarPosts
+            if(process.client){
+              this.isLiked = await JSON.parse(localStorage.getItem('likes')).includes(this.infos._id)
+            }
+            await this.checkStatus()
+            // console.log(result)
+            if(process.client){
+              this.isMine = await JSON.parse(localStorage.getItem('posts')).includes(this.infos._id)
+            }
+            return result.post
+          }else {
+            // console.log("result is false")
+            this.$router.push({path: "/404"})
+            return {}
+          }
+        })
   },
 
 

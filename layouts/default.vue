@@ -33,6 +33,14 @@ export default {
       }
     }
   },
+  async fetch() {
+    this.$store.state.posts = await this.$axios.$post( "https://cargoglobal-api.herokuapp.com/api/all",{
+      API_KEY: process.env.API_KEY
+    })
+      .then(result => {
+        return result
+      })
+  },
   created() {
 
     this.$axios.$get("https://restcountries.eu/rest/v2/all")
@@ -41,7 +49,7 @@ export default {
     })
 
     this.$store.dispatch('getAllCountries')
-    this.$store.dispatch('getAllPosts')
+    // this.$store.dispatch('getAllPosts') 
 
     if(process.client){
 
