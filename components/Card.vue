@@ -5,18 +5,18 @@
     data-aos-duration="600"
   >
 
-      <hr>
+    <hr>
 
     <h4 style="margin: 10px 0px;color: #454545">Çıkış:</h4>
 
     <img class="flag" :src="infos.startFlag" alt="flag image">
 
 
-      <h2>{{ infos.startCountry }}</h2> <div style="margin: 5px 0px"></div> <h2>{{ infos.startCity }}</h2>
+    <h2>{{ infos.startCountry }}</h2> <div style="margin: 5px 0px"></div> <h2>{{ infos.startCity }}</h2>
 
     <div style="margin: 5px 0px"></div>
 
-      <h2><span v-if="new Date(infos.startDate).getDate() <= 9">0</span>{{ new Date(infos.startDate).getDate() }}.<span v-if="new Date(infos.startDate).getMonth() <= 9">0</span>{{ new Date(infos.startDate).getMonth() }}.{{ new Date(infos.startDate).getFullYear() }}</h2>
+    <h2><span v-if="new Date(infos.startDate).getDate() <= 9">0</span>{{ new Date(infos.startDate).getDate() }}.<span v-if="new Date(infos.startDate).getMonth() <= 9">0</span>{{ new Date(infos.startDate).getMonth() }}.{{ new Date(infos.startDate).getFullYear() }}</h2>
 
 
 
@@ -115,8 +115,8 @@ export default {
   created() {
     this.checkStatus()
     if(process.client){
-    this.isLiked = JSON.parse(localStorage.getItem('likes')).includes(this.infos._id)
-        this.isMine = JSON.parse(localStorage.getItem('posts')).includes(this.infos._id)
+      this.isLiked = JSON.parse(localStorage.getItem('likes')).includes(this.infos._id)
+      this.isMine = JSON.parse(localStorage.getItem('posts')).includes(this.infos._id)
     }
   }
 }

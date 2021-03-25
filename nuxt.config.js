@@ -8,13 +8,18 @@ export default {
     title: 'CARGOGLOBAL',
     meta: [
       { charset: 'utf-8' },
+      { name: 'language', content: 'tr-TR'},
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { name: 'description', content: 'Cargoglobal lojistik ilanlarının paylaşılması için sitedir' },
       { name: 'author', content: 'Abdullah Veliyev'},
+      { name: 'designer', content: 'Abdullah Veliyev' },
+      { name: 'publisher', content: 'Abdullah Veliyev' },
+      { name: 'web_author', content: 'Abdullah Veliyev' },
       { name: 'rating', content: 'general'},
       { name: 'revisit-after', content: '1 days'},
       { name: 'keywords', content: 'elan,lojistik,kargo,tır,ilan,cargoglobal,lojistik ilanları,yük maşını,yükdaşıma elanları'},
-      { name: 'language', content: 'tr-TR'}
+      { name: 'distribution', content: 'global' },
+      { name: 'theme-color', content: '#fc1515' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
